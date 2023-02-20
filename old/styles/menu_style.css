@@ -1,0 +1,98 @@
+.menu{
+	border:none;
+	border:0px;
+	margin:0px;
+	padding:0px;
+	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+	font-size:1em;
+	font-weight:bold;
+	}
+.menu ul{
+	background: #c9d0e6;
+	height:2.5em;
+	list-style:none;
+	margin:0;
+	padding:0;
+  padding-left: 0;
+	}
+	.menu li{
+		float:left;
+		padding:0px;
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: 0;
+		width:195px;
+    list-style-type: none;
+		}
+	.menu li a{
+		background:#c9d0e6 /* url("../images/separator.gif") bottom left no-repeat*/ ;
+		/*background:#e0e0e0 url("../images/separator.gif") bottom right no-repeat;*/
+		color: #283769;
+		display:block;
+		font-weight:bold;
+		line-height:2.5em;
+		margin:0px;
+		padding:0px 25px;
+		text-align:center;
+		text-decoration:none;
+		}
+		.menu li a:hover, .menu ul li:hover a{
+			background: #6678b8 url("../images/hover.gif") bottom center no-repeat;
+			color:#FFFFFF;
+			text-decoration:none;
+			border-bottom: 0;
+			}
+	.menu li ul{
+		background:#c9d0e6;
+		display:none;
+		height:auto;
+		padding:0px;
+		margin:0px;
+		border:0px;
+		position:absolute;
+		width:195px;
+		z-index:200;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  -o-text-overflow: ellipsis;
+	  -ms-text-overflow: ellipsis;
+		}
+	.menu li:hover ul{
+		display:block;
+		}
+	.menu li li {
+		background:url('../images/sub_sep.gif') bottom left no-repeat;
+		display:block;
+		float:none;
+		margin:0px;
+		padding:0px;
+		width:195px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  -o-text-overflow: ellipsis;
+	  -ms-text-overflow: ellipsis;
+		}
+	.menu li:hover li a{
+		color: #283769;
+		background:none;
+		}
+	.menu li ul a{
+		display:block;
+		font-size:0.9em;
+		font-style:normal;
+		margin:0px;
+		padding:0px 10px 0px 15px;
+		text-align:left;
+		}
+		.menu li ul a:hover, .menu li ul li:hover a{
+			background:#6678b8 url('../images/hover_sub.gif') center left no-repeat;
+			border:0px;
+			color:#ffffff;
+			text-decoration:none;
+			}
+	.menu p{
+		clear:left;
+		}	
+

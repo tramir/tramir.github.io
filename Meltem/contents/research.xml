@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<research_info>
+
+  <!-- Publications -->
+
+  <pub>
+    <id>nl_gyn</id>
+    <title>Low-risk isn't no-risk: Perinatal treatments and the health of low-income newborns</title>
+    <coauthors>Mircea Trandafir and Reyn van Ewijk</coauthors>
+    <journal>Journal of Health Economics</journal>
+    <vol_issue>64</vol_issue>
+    <date>March 2019</date>
+    <pages>55-67</pages>
+    <notes></notes>
+    <abstract><![CDATA[
+      We investigate the effects of perinatal medical treatments on low-income newborns who are classified as low-risk. A policy rule in The Netherlands states that low-risk deliveries before week 37 should be supervised by physicians and later deliveries only by midwives with no physician present. This creates large discontinuities in the probability of receiving medical interventions only physicians are allowed to perform. Using a regression discontinuity design, we find that babies born slightly before the week-37 cutoff are significantly less likely to die than babies born slightly later. Our data suggest that physician supervision of birth reduces the likelihood of adverse events such as fetal distress or emergency C-section. Our results indicate that low-income women benefit from receiving a higher level of medical care even if no explicit risk factors have been recognized, pointing to challenges in identifying all high-risk pregnancies. "Back-of-the-envelope" calculations suggest this additional care is highly cost-effective.
+    ]]></abstract>
+    <doc>GYN_Midwife.pdf</doc>
+    <doi>https://doi.org/10.1016/j.jhealeco.2019.01.006</doi>
+  </pub>
+
+  <pub>
+    <id>nl_homebirths</id>
+    <title>Saving Lives at Birth: The Impact of Homebirths on Infant Outcomes</title>
+    <coauthors>Mircea Trandafir and Reyn van Ewijk</coauthors>
+    <journal>American Economic Journal: Applied Economics</journal>
+    <vol_issue>7:3</vol_issue>
+    <date>July 2015</date>
+    <pages>28–50</pages>
+    <notes></notes>
+    <abstract><![CDATA[
+      Many developed countries have recently experienced sharp increases in home birth rates. This paper investigates the impact of home births on the health of low-risk newborns using data from the Netherlands, the only developed country where home births are widespread. To account for endogeneity in location of birth, we exploit the exogenous variation in distance from a mother's residence to the closest hospital. We find that giving birth in a hospital leads to substantial reductions in newborn mortality. We provide suggestive evidence that proximity to medical technologies may be an important channel contributing to these health gains.
+    ]]></abstract>
+    <doc>NL_Homebirths_Manuscript.pdf</doc>
+    <doi>https://doi.org/10.1257/app.20120359</doi>
+  </pub>
+
+  <pub>
+    <id>meno_spillover</id>
+    <title>Spillover Effects of Drug Safety Warnings on Preventive Health Care Use</title>
+    <coauthors>Chiara Orsini</coauthors>
+    <journal>B.E. Journal of Economic Analysis and Policy</journal>
+    <vol_issue>15:1</vol_issue>
+    <date>January 2015</date>
+    <pages>179-208</pages>
+    <notes><![CDATA[
+      <span style="font-size=70%;">Earlier versions of this paper circulated as "Spillover Effects of Drug Safety Warnings on Health Behavior"</span>
+    ]]></notes>
+    <abstract><![CDATA[
+      We examine how new medical information on drug safety impacts preventive health care use. We exploit the release of the findings of the Women's Health Initiative Study (WHIS) -- the largest randomized controlled trial of women's health -- which demonstrated in 2002 the health risks associated with the long-term use of Hormone Replacement Therapy (HRT). We first show that, after the release of the WHIS findings, HRT use dropped sharply among post-menopausal women. We then estimate the spillover effects of the WHIS findings on preventive care by means of a difference-in-differences methodology comparing changes in preventive care use among 60 to 69 year-old women (who have high rates of HRT use) with the change among women aged 75 and above (who have much lower rates of HRT use). Using data from the Behavioral Risk Factor Surveillance System for the period 1998-2007, we find that women aged 60-69 had statistically and economically significant declines in their annual mammography checks, checkups, cholesterol checks and blood stool tests, when compared to older women.
+    ]]></abstract>
+    <doc>WHIS_Behavior.pdf</doc>
+    <doi>https://doi.org/10.1515/bejeap-2013-0038</doi>
+  </pub>
+
+  <pub>
+    <id>bilingual</id>
+    <title>Impact of Bilingual Education Programs on Limited English Proficient Students and Their Peers: Regression Discontinuity Evidence from Texas</title>
+    <coauthors>Aimee Chin and Scott Imberman</coauthors>
+    <journal>Journal of Public Economics</journal>
+    <vol_issue>107</vol_issue>
+    <date>November 2013</date>
+    <pages>63-78</pages>
+    <notes></notes>
+    <abstract><![CDATA[
+      Texas requires a school district to offer bilingual education when its enrollment of limited English proficient (LEP) students in a particular elementary grade and language is twenty or higher. Using school panel data, we find a significant increase in the probability that a district provides bilingual education above this 20-student cutoff. Using this discontinuity as an instrument for district bilingual education provision, we find that providing bilingual education programs (relative to providing only English as a Second Language programs) does not significantly impact the standardized test scores of students with Spanish as their home language (comprised primarily of ever-LEP students). However, we find significant positive impacts on non-LEP students’ achievement, which indicates that education programs for LEP students have spillover effects to non-LEP students.
+    ]]></abstract>
+    <doc>bilingual_ed_texas_aug2013.pdf</doc>
+    <doi>https://doi.org/10.1016/j.jpubeco.2013.08.008</doi>
+  </pub>
+
+  <pub>
+    <id>CaUninsurance</id>
+    <title>Does Uninsurance Affect the Health Outcomes of the Insured? Evidence from Heart Attack Patients in California</title>
+    <journal>Journal of Health Economics</journal>
+    <vol_issue>31:4</vol_issue>
+    <date>July 2012</date>
+    <pages>545-563</pages>
+    <notes><![CDATA[
+      <span style="font-size=70%;">Mentioned in <a href="http://purl.access.gpo.gov/GPO/LPS113886"
+        target="_new">"The Economic Case For Health Care Reform"</a> (Council of Economic Advisers).</span>
+    ]]></notes>
+    <abstract><![CDATA[
+      In this paper, I examine the impact of uninsured patients on the health of the insured, focusing on one health outcome -- the in-hospital mortality rate of insured heart attack patients. I employ panel data models using patient discharge and hospital financial data from California (1999-2006). My results indicate that uninsured patients have an economically significant effect that increases the mortality rate of insured heart attack patients. I show that these results are not driven by alternative explanations, including reverse causality, patient composition effects, sample selection or unobserved trends and that they are robust to a host of specification checks. My results also indicate that the primary channel for the observed spillover effects is increased hospital uncompensated care costs. Although data limitations constrain my capacity to check how hospitals change their provision of care to insured heart attack patients in response to reduced revenues, the evidence I have suggests a modest increase in the quantity of cardiac services without a corresponding increase in hospital staff.
+    ]]></abstract>
+    <doc>Daysal_CaliUninsAMI.pdf</doc>
+    <doi>https://doi.org/10.1016/j.jhealeco.2012.04.004</doi>
+  </pub>
+
+  <pub>
+    <id>emp_subs_turkey</id>
+    <title>Do Employment Subsidies Work? Evidence from Regionally Targeted Subsidies in Turkey</title>
+    <coauthors>Gordon Betcherman and Carmen Pages</coauthors>
+    <journal>Labour Economics</journal>
+    <vol_issue>17:4</vol_issue>
+    <date>August 2010</date>
+    <pages>710-722</pages>
+    <notes></notes>
+    <abstract><![CDATA[
+      This paper studies the effects on registered employment and number of registered establishments of two employment subsidy schemes in Turkey. We implement a difference-in-differences methodology to construct appropriate counterfactuals for the covered provinces. Our findings suggest that both subsidy programs did lead to significant net increases in registered jobs in eligible provinces (5%-13% for the first program and 11%-15% for the second). However, the cost of the actual job creation was high because of substantial deadweight losses, particularly for the first program (47% and 78%). Because of better design features, the second subsidy program had lower, though still significant, deadweight losses (27%-46%). Although constrained by data availability, the evidence suggests that the dominant effect of subsidies was to increase social security registration of firms and workers rather than boosting total employment and economic activity. This supports the theory that in countries with weak enforcement institutions, high labor taxes on low-wage workers may lead to substantial incentives for firms and workers to operate informally.
+    ]]></abstract>
+    <doc>Regional_Incentives.pdf</doc>
+    <doi>https://doi.org/10.1016/j.labeco.2009.12.002</doi>
+  </pub>
+
+
+  <!-- Comments and Invited Policy Briefs -->
+
+  <opub>
+    <id>bjog_comment</id>
+    <title>Re: A recent study by economists on the impact of home births on infant outcomesconfuses the debate on home birth</title>
+    <coauthors>Mircea Trandafir and Reyn van Ewijk</coauthors>
+    <journal>BJOG: An International Journal of Obstetrics and Gynecology</journal>
+    <vol_issue>123:10</vol_issue>
+    <date>September 2016</date>
+    <pages>1713-1714</pages>
+    <notes></notes>
+    <abstract><![CDATA[
+      Our reply to the letter by de Jonge et al (2016) on how to interpret our findings related to
+      the effect of a hospital birth on low-risk newborn mortality in the context of the home birth
+      debate.
+    ]]></abstract>
+    <doc>BJOG_letter.pdf</doc>
+    <doi>https://dx.doi.org/10.1111/1471-0528.14250</doi>
+  </opub>
+
+  <opub>
+    <id>medisch</id>
+    <title>Thuisbevalling  riskanter  in  arm  gezin</title>
+    <coauthors>Mircea Trandafir and Reyn van Ewijk</coauthors>
+    <journal>Medisch  Contact</journal>
+    <vol_issue>13</vol_issue>
+    <date>2016</date>
+    <pages>16-18</pages>
+    <notes></notes>
+    <abstract><![CDATA[
+      A summary of our findings on the effects of a hospital birth on low-risk newborn mortality. (In Dutch)
+    ]]></abstract>
+    <doc>Medisch_Contact.pdf</doc>
+    <doi>https://goo.gl/TV3WiR</doi>
+  </opub>
+
+  <opub>
+    <id>iza_labor</id>
+    <title>Early-Life Medical Care and Human Capital Accumulation</title>
+    <coauthors></coauthors>
+    <journal>IZA World of Labor</journal>
+    <vol_issue>217</vol_issue>
+    <date>December 2015</date>
+    <pages></pages>
+    <notes></notes>
+    <abstract><![CDATA[
+    ]]></abstract>
+    <doc>Daysal_WoL.pdf</doc>
+    <doi>http://dx.doi.org/10.15185/izawol.217</doi>
+  </opub>
+
+	<!-- Working papers -->
+
+  <wp>
+    <id>bw_spillovers</id>
+    <title>Spillover Effects of Early-Life Medical Interventions</title>
+    <coauthors>Marianne Simonsen, Mircea Trandafir, and Sanni Breining</coauthors>
+    <date>February 2019</date>
+    <notes>IZA Working Paper No. 9086</notes>
+    <abstract><![CDATA[
+      We investigate the spillover effects of early-life medical treatments on the siblings of treated children. We use a regression discontinuity design that exploits changes in medical treatments across the very low birth weight (VLBW) cutoff. Using administrative data from Denmark, we find that siblings of focal children who were slightly below the VLBW cutoff have higher 9th grade language and math test scores. Our results suggest that improved interactions within the family and parental compensating behavior may be an important pathway behind the observed spillover effects.
+    ]]></abstract>
+    <doc>Denmark_Spillovers.pdf</doc>
+    <doi></doi>
+  </wp>
+
+  <wp>
+    <id>dk_housing_fertility</id>
+    <title>Home Prices, Fertility, and Early-Life Health Outcomes</title>
+    <coauthors>Mike Lovenheim and Nikolaj Siersbæk</coauthors>
+    <date>February 2019</date>
+    <notes>Revise and Resubmit</notes>
+    <abstract><![CDATA[
+      We estimate the effect of housing price changes on fertility and early-life infant health in Denmark. Using rich population register data among women aged 20-44 who own a home, we find that for each 100,000 DKK increase in home prices (equivalent to $15,000), the likelihood of giving birth increases by 0.27 percentage points or 2.32%. These estimates are similar to findings from the US per dollar of home price change, which is surprising given the strong pro-natalist policies and generous government programs in Denmark. We also present the first estimates of the effect of home prices on infant health. Our findings indicate that housing price increases lead to better infant health at birth in terms of low birth weight and prematurity. There is no evidence of an effect on health during the first year of life. These findings are important because they indicate that even in a country like Denmark with expansive government supports and free and universal health care, home price variation alters the health capital of children and can significantly affect the social costs of fertility.
+    ]]></abstract>
+    <doc></doc>
+    <doi></doi>
+  </wp>
+
+  <wp>
+    <id>breast_cancer</id>
+    <title>Labor Market Effects  of  Life-Saving Treatments: The Case of Adjuvant Radiotherapy for Breast Cancer Patientss</title>
+    <coauthors>William N. Evans, Mikkel Hasse Pedersen and Mircea Trandafir</coauthors>
+    <date>August 2017</date>
+    <notes>New version coming soon!</notes>
+    <abstract><![CDATA[
+			We investigate the impact of adjuvant radiation therapy (RT) treatment on the labor market outcomes of breast cancer patients. In order to address the endogeneity in receipt of adjuvant radiotherapy, we use a 2SLS strategy that exploits plausibly exogenous variation in RT treatments due to changes in treatment guidelines. We find that adjuvant RT leads to significant improvements in employment and income. The gains are observed as early as three years after diagnosis and persist up to 10 years post-diagnosis. The main driver of these
+			results seems to be reduced disability in the future.
+    ]]></abstract>
+    <doc></doc>
+  </wp>
+
+  <wp>
+    <id>hrt</id>
+    <title>The Miracle Drugs: Hormone Replacement Therapy and Labor Market Behavior of Middle Aged Women</title>
+    <coauthors>Chiara Orsini</coauthors>
+    <date>Revised February 2014</date>
+    <notes>IZA Working Paper No. 7993. Currently Revising</notes>
+    <abstract><![CDATA[
+      In an aging society, determining which factors contribute to the employment of older individuals is increasingly important. We examine the impact of medical innovations on the employment of middle-aged women focusing on the specific case of Hormone Replacement Therapy (HRT), a common treatment for the alleviation of negative menopausal symptoms. HRT medications were among the most popular prescriptions in the United States until 2002 when the Women’s Health Initiative Study – the largest randomized control trial on women ever undertaken – documented the health risks associated with their long term use. We exploit the release of these findings within a Fixed Effect Instrumental Variable framework to address the endogeneity in HRT use. Our results indicate substantial benefits of HRT use to the short-term employment of middle-aged women.
+    ]]></abstract>
+    <doc>WHIS_Labor.pdf</doc>
+  </wp>
+
+  <!-- Work in progress -->
+
+  <wip>
+    <id>autism</id>
+    <title>Parental Human Capital Traits and Autism Spectrum Disorder in Children</title>
+    <coauthors>Todd Elder, Scott Imberman, Judy Hellerstein, and Chiara Orsini</coauthors>
+    <date></date>
+    <notes></notes>
+    <abstract><![CDATA[
+    ]]></abstract>
+    <doc></doc>
+  </wip>
+
+  <wip>
+    <id>bw_heterogeneity</id>
+    <title>Early-Life Medical Interventions and the Fragile Male Hypothesis</title>
+    <coauthors>Marianne Simonsen and Mircea Trandafir</coauthors>
+    <date></date>
+    <notes></notes>
+    <abstract><![CDATA[
+
+    ]]></abstract>
+    <doc></doc>
+  </wip>
+
+  <wip>
+    <id>antidepressants</id>
+    <title>The Impact of Antidepressant Use on Socioeconomic Outcomes of Treated Individuals and Their Families</title>
+    <coauthors>Mircea Trandafir</coauthors>
+    <date></date>
+    <notes>Funded through a DFF-Research 1 grant (PI: Mircea Trandafir).</notes>
+    <abstract><![CDATA[
+    ]]></abstract>
+    <doc></doc>
+  </wip>
+
+
+</research_info>
