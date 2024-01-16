@@ -133,20 +133,21 @@
     <id>employee_health</id>
     <title>Employee health and firm performance</title>
     <coauthors>Daniel A. Rettl and Alexander Schandlbauer</coauthors>
-    <date>January 2022</date>
-    <notes>Also available as IZA Discussion Paper No. 15147</notes>
+    <date>July 2023</date>
+    <notes><![CDATA[
+      <span style="font-weight:bold">Updated version.</span>
+      An older version is also available as IZA Discussion Paper No. 15147
+    ]]>
+    </notes>
     <abstract><![CDATA[
-      When workers are in bad health, their productivity declines. We investigate whether the health of 
-      employees affects firm performance, taking advantage of the severity of the seasonal influenza 
-      seasons as a source of exogenous variation. We find that firms whose employees are particularly 
-      affected by influenza experience reductions in their return on assets and in net income. These 
-      results are not driven by firm-specific characteristics, as we find the same relationship between 
-      influenza severity and firm performance within firms, at the establishment level. We also document 
-      substantial heterogeneity in the effects, with small firms and labor-intensive firms driving our 
-      findings. This suggests that labor is an important driver of firm performance and that 
-      capital-intensive and larger firms are better able to shift resources in response to temporary 
-      shocks to their workforce. Back-of-the-envelope calculations suggest that smaller firms may be 
-      better off subsidizing vaccination programs for their employees.
+      Using administrative data on the universe of private firms in Denmark, we find that even temporary
+      and small health shocks to employee health like seasonal influenza can significantly reduce firm 
+      profitability. The effects are driven by labor-intensive firms and decrease in firm size and 
+      financial flexibility, suggesting that firms that are better able to shift resources can insulate 
+      themselves better. Our results indicate that employees are shielded from these negative effects, 
+      while owners (especially of small firms) see reduced dividends. Back-of-the-envelope calculations 
+      propose that all but the largest firms may benefit from subsidizing vaccination programs for 
+      their employees.
     ]]></abstract>
     <doc>Flu.pdf</doc>
   </wp>
@@ -212,7 +213,7 @@
   <wp>
     <id>ad_children</id>
     <title>Teen antidepressant use and academic achievement</title>
-    <coauthors>Sonia Bhalotra, N. Meltem Daysal, and Nis Vestergård Lydiksen</coauthors>
+    <coauthors>Sonia Bhalotra and N. Meltem Daysal</coauthors>
     <date>May 2020</date>
     <notes>Currently revising</notes>
     <abstract><![CDATA[
@@ -271,6 +272,31 @@
   <!-- Other Publications -->
 
   <other_pub>
+    <id>DJOF</id>
+    <title>Medical treatments and social mobility</title>
+    <coauthors>N. Meltem Daysal</coauthors>
+    <journal>Samfundsøkonomen</journal>
+    <vol_issue>2023:2</vol_issue>
+    <date>March 2023</date>
+    <pages>18-26</pages>
+    <notes></notes>
+    <abstract><![CDATA[
+      Economists have long been interested in understanding the relationship between health and 
+      socio-economic outcomes. Existing research consistently links poor health during early childhood to worse
+      well-being in the long-run, including health, educational attainment, and labor market outcomes
+      (Almond and Currie, 2011; Almond, Currie, and Duque, 2018; Currie et al., 2010). Growing evidence
+      also indicates that child health shocks affect the socio-economic outcomes of other family members,
+      such as parental labor supply (Gunnsteinsson and Steingrimsdottir, 2019; Breivik and Costa-Ramón,
+      2022; Eriksen et al., 2021; Adhvaryu et al., 2022), parental health (Burton, Lethbridge, and Phipps,
+      2008; Adhvaryu et al., 2022), and sibling academic achievement (Black et al., 2021). A natural
+      question then is whether medical care aimed at improving childhood health may alleviate or eliminate
+      these negative long-run consequences
+    ]]></abstract>
+    <doc>DJOF.pdf</doc>
+    <doi>https://www.djoef-forlag.dk/openaccess/samf/samfdocs/2023/2023_2/Samf_4_2_2023.pdf</doi>
+  </other_pub>
+
+  <other_pub>
     <id>BJOG</id>
     <title>Re: A recent study by economists on the impact of home births on infant outcomes confuses the debate on home birth</title>
     <coauthors>N. Meltem Daysal and Reyn van Ewijk</coauthors>
@@ -326,7 +352,7 @@
     <id>Kenya</id>
     <title>Banking sector stability, efficiency, and outreach in Kenya</title>
     <coauthors>Thorsten Beck, Robert Cull, Michael J. Fuchs, Jared Getenga, Peter K. Gatere, and John Randa</coauthors>
-    <journal>Kenya: Policies for Prosperity (edited by Christopher Adam, Paul Collier, and Njuguna Ndung’u)</journal>
+    <journal>Kenya: Policies for Prosperity (edited by Christopher Adam, Paul Collier, and Njuguna Ndung'u)</journal>
     <vol_issue>Oxford University Press</vol_issue>
     <date>2011</date>
     <pages>2349-2350</pages>
