@@ -130,13 +130,15 @@
   <!-- Working papers -->
 
   <wp>
-    <id>employee_health</id>
+    <id>employee_health_flu</id>
     <title>Employee health and firm performance</title>
     <coauthors>Daniel A. Rettl and Alexander Schandlbauer</coauthors>
-    <date>July 2023</date>
+    <date>February 2024</date>
     <notes><![CDATA[
-      <span style="font-weight:bold">Updated version.</span>
-      An older version is also available as IZA Discussion Paper No. 15147
+      <span style="font-weight: bold;">
+        Submitted.
+      </span>
+      An earlier version is available as IZA Discussion Paper No. 15147
     ]]>
     </notes>
     <abstract><![CDATA[
@@ -150,6 +152,52 @@
       their employees.
     ]]></abstract>
     <doc>Flu.pdf</doc>
+  </wp>
+
+  <wp>
+    <id>rt</id>
+    <title>Do medical treatments work for work? Evidence from breast cancer patients</title>
+    <coauthors>N. Meltem Daysal, William N. Evans, and Mikkel H. Pedersen</coauthors>
+    <date>February 2024</date>
+    <notes><![CDATA[
+      <span style="font-weight: bold;">
+        Submitted.
+      </span>
+      An earlier version circulated under the title "The economic consequences of breast cancer treatments"
+    ]]></notes>
+    <abstract><![CDATA[
+      We investigate the effects of radiation therapy on the mortality and economic outcomes of breast 
+      cancer patients. We implement a 2SLS strategy within a difference-in-difference framework exploiting 
+      variation in treatment stemming from a medical guideline change in Denmark. Using administrative data, 
+      we reproduce results from an RCT showing the lifesaving benefits of radiother- apy. We then show therapy 
+      also has economic returns: ten years after diagnosis, treatment increases employment by 37% and earnings 
+      by 45%. Mortality and economic results are driven by results for more educated women, indicating that 
+      equalizing access to treatment may not be sufficient to reduce health inequalities.
+    ]]></abstract>
+    <doc>Radiotherapy.pdf</doc>
+  </wp>
+
+  <wp>
+    <id>ml_screening_bc</id>
+    <title>An economic approach to machine learning in health policy</title>
+    <coauthors>N. Meltem Daysal, Sendhil Mullainathan, Ziad Obermeyer, and Suproteem K. Sarkar</coauthors>
+    <date>January 2024</date>
+    <notes><![CDATA[
+      <span style="font-weight: bold;">
+        Submitted
+      </span>
+    ]]></notes>
+    <abstract><![CDATA[
+      We consider the health effects of "precision" screening policies for cancer guided by algorithms. We 
+      show that machine learning models that predict breast cancer from health claims data outperform models 
+      based on just age and established risk factors. We estimate that screening women with high predicted risk 
+      of invasive tumors would reduce the long-run incidence of later-stage tumors by 40%. Screening high-risk 
+      women would also lead to half the rate of cancer overdiagnosis that screening low-risk women would. We 
+      show that these results depend crucially on the machine learning model's prediction target. A model trained 
+      to predict positive mammography results leads to policies with weaker health effects and higher rates of 
+      overdiagnosis than a model trained to predict invasive tumors.
+    ]]></abstract>
+    <doc>Screening.pdf</doc>
   </wp>
 
   <wp>
@@ -222,41 +270,16 @@
     <doc></doc>
   </wp>
 
-  <wp>
-    <id>rt</id>
-    <title>The economic consequences of breast cancer treatments</title>
-    <coauthors>N. Meltem Daysal, William Evans, and Mikkel H. Pedersen</coauthors>
-    <date>October 2019</date>
-    <notes>Currently revising</notes>
-    <abstract><![CDATA[
-      We investigate the impact of adjuvant radiation therapy (RT) treatment on the labor market outcomes of breast cancer patients. In order to address the endogeneity in receipt of adjuvant radiotherapy, we use a 2SLS strategy that exploits plausibly exogenous variation in RT treatments due to changes in treatment guidelines. We find that adjuvant RT leads to significant improvements in employment and income. The gains are observed as early as three years after diagnosis and persist up to 10 years post-diagnosis. The main driver of these results seems to be reduced disability in the future.
-    ]]></abstract>
-    <doc></doc>
-  </wp>
-
   <!-- Work in progress -->
 
   <wip>
-    <id>ml_screening</id>
-    <title>Machine learning in health policy: Evidence from breast cancer screening</title>
-    <coauthors>N. Meltem Daysal, Sendhil Mullainathan, Ziad Obermeyer, and Suproteem Sarkar</coauthors>
+    <id>gps_akm</id>
+    <title>GPs and inequality in health</title>
+    <coauthors>Janet Currie and N. Meltem Daysal</coauthors>
     <date></date>
-    <!-- <notes></notes> -->
-    <abstract><![CDATA[
-    ]]></abstract>
-    <url></url>
+    <notes></notes>
+    <abstract><![CDATA[]]></abstract>
   </wip>
-
-  <!-- <wip>
-    <id>portugal</id>
-    <title>Going after the addiction, not the addicted: The impact of drug decriminalization in Portugal</title>
-    <coauthors>N. Meltem Daysal, Sónia Félix, Pedro Portugal, and  Ana Tavares</coauthors>
-    <date></date>
-    <notes>Funded through a DFF-Research 2 grant (PI: N. Meltem Daysal)</notes>
-    <abstract><![CDATA[
-    ]]></abstract>
-    <link></link>
-  </wip> -->
 
   <!-- <wip>
     <id>lep</id>
@@ -356,7 +379,7 @@
     <vol_issue>Oxford University Press</vol_issue>
     <date>2011</date>
     <pages>2349-2350</pages>
-    <notes>Also available as World Bank Policy Research Working Paper No. 5442, October 2010.</notes>
+    <notes>Also available as World Bank Policy Research Working Paper No. 5442, October 2010</notes>
     <abstract><![CDATA[
       Although Kenya's financial system is by far the largest and most developed in East Africa and
       its stability has improved significantly over the past years, many challenges remain. This paper
