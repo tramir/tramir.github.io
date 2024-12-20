@@ -133,22 +133,22 @@
     <id>rt</id>
     <title>Do medical treatments work for work? Evidence from breast cancer patients</title>
     <coauthors>N. Meltem Daysal, William N. Evans, and Mikkel H. Pedersen</coauthors>
-    <date>February 2024</date>
+    <date>December 2024</date>
     <notes><![CDATA[
       <span style="font-weight: bold;">
-        Revise and resubmit at <em>American Economic Journal: Economic Policy</em>.
+        Revised and resubmitted at <em>American Economic Journal: Economic Policy</em>.
       </span>
       An earlier version circulated under the title "The economic consequences of breast cancer treatments"
     ]]>
     </notes>
     <abstract><![CDATA[
-      We investigate the effects of radiation therapy on the mortality and economic outcomes of breast 
-      cancer patients. We implement a 2SLS strategy within a difference-in-difference framework exploiting 
-      variation in treatment stemming from a medical guideline change in Denmark. Using administrative data, 
-      we reproduce results from an RCT showing the lifesaving benefits of radiother- apy. We then show therapy 
-      also has economic returns: ten years after diagnosis, treatment increases employment by 37% and earnings 
-      by 45%. Mortality and economic results are driven by results for more educated women, indicating that 
-      equalizing access to treatment may not be sufficient to reduce health inequalities.
+      We investigate the effects of radiation therapy on the mortality and economic outcomes of breast cancer 
+      patients. We implement a 2SLS strategy within a difference-in-differences framework exploiting variation 
+      in treatment stemming from a medical guidelines change in Denmark. We reproduce the results from an RCT 
+      showing the lifesaving benefits of radiotherapy. We then show radiation therapy also has economic returns: 
+      ten years after diagnosis, treatment increases employment by 37% and earnings by 45%. Previous work has 
+      documented a substantial employment drop after a breast cancer diagnosis.  Our results imply that radiation 
+      therapy can reduce this effect by 70%.
     ]]></abstract>
     <doc>Radiotherapy.pdf</doc>
   </wp>
