@@ -47,14 +47,16 @@ function fill_in_text() {
         + '. '
         + (isempty(papers[i].getElementsByTagName("notes")[0]) ? ('') :
             (papers[i].getElementsByTagName("notes")[0].textContent + '.'))
-        + '</p><div class="row"><div class="col-sm-12"><div class="row">'
-        + '<div class="col-sm-2 text-center">&nbsp;</div>'
-        + '<div class="col-sm-4 text-center"><div data-badge-popover="right" data-badge-type="4" data-doi="'
-        + papers[i].getElementsByTagName("doi")[0].textContent 
-        + '" data-hide-no-mentions="true" class="altmetric-embed"></div></div>'
-        + '<div class="col-sm-4 text-center">&nbsp;</div>'
-        + '<div class="col-sm-2 text-center">&nbsp;</div>'
-        + '</a></h4>'
+        + '</a></h4></div>'
+        // + '<div class="row">'
+        // + '<div class="col-sm-4"><div style="padding-left:20px"><span class="__dimensions_badge_embed__" data-doi="'
+        // + papers[i].getElementsByTagName("doi")[0].textContent 
+        // + '" data-style="small_rectangle"></span></div></div>'
+        // + '<div class="col-sm-4"><div data-badge-popover="right" data-badge-type="4" data-doi="'
+        // + papers[i].getElementsByTagName("doi")[0].textContent 
+        // + '" data-hide-no-mentions="true" class="altmetric-embed"></div></div>'
+        // + '<div class="col-sm-4 text-center">&nbsp;</div>'
+        // + '</div>'
         + '<div class="panel-collapse collapse" id="'
         + papers[i].getElementsByTagName("id")[0].textContent
         + '"><div class="box"><p>'

@@ -41,13 +41,8 @@
     </script>
     <!-- Article metrics-->
     <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
-<<<<<<< HEAD
-=======
-    <script type='text/javascript'>
-      _altmetric_embed_init();
-  </script>
->>>>>>> 7f812d12b443ddf96f1401a23396eb02a37bcf0f
-  </head>
+    <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
+</head>
 
   <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
@@ -80,9 +75,14 @@
         <div data-include="footer"></div>
       </div>
       <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
-      <script type='text/javascript'>
+    </main>
+    <script type="text/javascript">  
+      //$(window).bind("load", function() {
+      setTimeout(function(){
         _altmetric_embed_init();
-      </script>
-      </main>
+        window.__dimensions_embed.addBadges();
+      }, 2000);
+      //});
+    </script>
   </body>
 </html>
