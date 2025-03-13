@@ -37,7 +37,8 @@ function fill_in_text() {
         + '</strong>'
         + (isempty(papers[i].getElementsByTagName("coauthors")[0]) ? '.' :
             (' (with ' + papers[i].getElementsByTagName("coauthors")[0].textContent + ').'))
-        + ' <strong><em>' + papers[i].getElementsByTagName("journal")[0].textContent + '</em></strong> '
+        + (isempty(papers[i].getElementsByTagName("coauthors")[0]) ? '' :
+            (' <strong><em>' + papers[i].getElementsByTagName("journal")[0].textContent + '</em></strong> '))
         + (isempty(papers[i].getElementsByTagName("vol_issue")[0]) ? '' :
             (papers[i].getElementsByTagName("vol_issue")[0].textContent))
         + (isempty(papers[i].getElementsByTagName("date")[0]) ? '' :
