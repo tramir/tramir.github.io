@@ -13,12 +13,12 @@ function fill_in_text() {
   if (window.XMLHttpRequest)
   {
     // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
+    xmlhttp = new XMLHttpRequest();
   }
   else
    {
      // code for IE6, IE5
-     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
    }
   xmlhttp.open("GET","assets/xml/research.xml", false);
   xmlhttp.send();
@@ -27,7 +27,22 @@ function fill_in_text() {
   // Publications
 
   text = '<h3>Publications</h3> <hr class="divider-w mt-10 mb-20">';
-  papers=xmlDoc.getElementsByTagName("pub");
+  papers = xmlDoc.getElementsByTagName("pub");
+
+    //convert HTMLCollection to an array and run sort method on it
+    papers = Array.from(papers);
+    papers.sort(function(a, b) {
+      var textA = a.getElementsByTagName("date")[0].textContent;
+      var parts = textA.split(/\s* \s*/);
+      var dateA = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      var textB = b.getElementsByTagName("date")[0].textContent;
+      var parts = textB.split(/\s* \s*/);
+      var dateB = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      if (dateA.getTime() < dateB.getTime()) return 1;
+      if (dateA.getTime() > dateB.getTime()) return -1;
+      return 0;
+    });
+  
   for (i = 0; i < papers.length; i++) {
     text += '<div class="panel-heading"><h4 class="panel-title">'
         + '<a data-toggle="collapse" class="collapsed" href="#'
@@ -85,6 +100,21 @@ function fill_in_text() {
 
   text = '<h3>Working Papers</h3> <hr class="divider-w mt-10 mb-20">';
   papers=xmlDoc.getElementsByTagName("wp");
+
+    //convert HTMLCollection to an array and run sort method on it
+    papers = Array.from(papers);
+    papers.sort(function(a, b) {
+      var textA = a.getElementsByTagName("date")[0].textContent;
+      var parts = textA.split(/\s* \s*/);
+      var dateA = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      var textB = b.getElementsByTagName("date")[0].textContent;
+      var parts = textB.split(/\s* \s*/);
+      var dateB = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      if (dateA.getTime() < dateB.getTime()) return 1;
+      if (dateA.getTime() > dateB.getTime()) return -1;
+      return 0;
+    });
+  
   for (i = 0; i < papers.length; i++) {
     text += '<div class="panel-heading"><h4 class="panel-title">'
         + '<a data-toggle="collapse" class="collapsed" href="#'
@@ -121,6 +151,21 @@ function fill_in_text() {
 
   text = '<h3>Work in Progress</h3> <hr class="divider-w mt-10 mb-20">';
   papers=xmlDoc.getElementsByTagName("wip");
+  
+    //convert HTMLCollection to an array and run sort method on it
+    papers = Array.from(papers);
+    papers.sort(function(a, b) {
+      var textA = a.getElementsByTagName("date")[0].textContent;
+      var parts = textA.split(/\s* \s*/);
+      var dateA = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      var textB = b.getElementsByTagName("date")[0].textContent;
+      var parts = textB.split(/\s* \s*/);
+      var dateB = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      if (dateA.getTime() < dateB.getTime()) return 1;
+      if (dateA.getTime() > dateB.getTime()) return -1;
+      return 0;
+    });
+  
   for (i = 0; i < papers.length; i++) {
     text += '<div class="panel-heading"><h4 class="panel-title"><strong>'
         + papers[i].getElementsByTagName("title")[0].textContent
@@ -137,6 +182,21 @@ function fill_in_text() {
 
   text = '<h3>Other Publications</h3> <hr class="divider-w mt-10 mb-20">';
   papers=xmlDoc.getElementsByTagName("other_pub");
+
+    //convert HTMLCollection to an array and run sort method on it
+    papers = Array.from(papers);
+    papers.sort(function(a, b) {
+      var textA = a.getElementsByTagName("date")[0].textContent;
+      var parts = textA.split(/\s* \s*/);
+      var dateA = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      var textB = b.getElementsByTagName("date")[0].textContent;
+      var parts = textB.split(/\s* \s*/);
+      var dateB = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      if (dateA.getTime() < dateB.getTime()) return 1;
+      if (dateA.getTime() > dateB.getTime()) return -1;
+      return 0;
+    });
+  
   for (i = 0; i < papers.length; i++) {
     text += '<div class="panel-heading"><h4 class="panel-title">'
         + '<a data-toggle="collapse" class="collapsed" href="#'
@@ -184,6 +244,21 @@ function fill_in_text() {
 
   text = '<h3>Permanent Working Papers (RIP)</h3> <hr class="divider-w mt-10 mb-20">';
   papers=xmlDoc.getElementsByTagName("rip");
+
+    //convert HTMLCollection to an array and run sort method on it
+    papers = Array.from(papers);
+    papers.sort(function(a, b) {
+      var textA = a.getElementsByTagName("date")[0].textContent;
+      var parts = textA.split(/\s* \s*/);
+      var dateA = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      var textB = b.getElementsByTagName("date")[0].textContent;
+      var parts = textB.split(/\s* \s*/);
+      var dateB = new Date(Date.parse(parts[0] + " 1," + parts[1]));
+      if (dateA.getTime() < dateB.getTime()) return 1;
+      if (dateA.getTime() > dateB.getTime()) return -1;
+      return 0;
+    });
+  
   for (i = 0; i < papers.length; i++) {
     text += '<div class="panel-heading"><h4 class="panel-title">'
         + '<a data-toggle="collapse" class="collapsed" href="#'
