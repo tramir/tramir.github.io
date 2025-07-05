@@ -160,14 +160,44 @@
   <!-- Working papers -->
 
   <wp>
+    <id>ad_children</id>
+    <title>Antidepressant Treatment in Childhood</title>
+    <coauthors>Sonia Bhalotra and N. Meltem Daysal</coauthors>
+    <date>July 2025</date>
+    <notes><![CDATA[
+      <span style="font-weight: bold;">
+        Submitted.
+      </span>
+      An earlier version circulated under the title "Teen antidepressant use and academic achievement"
+    ]]></notes>
+    <abstract><![CDATA[
+      Mental health disorders tend to emerge in childhood, with half starting by age 14. This makes early 
+      intervention important, but treatment rates are low, and antidepressant treatment for children remains
+      controversial since an FDA warning in 2004 that highlighted adverse effects. Linking individuals across
+      Danish administrative registers, we provide some of the first evidence of impacts of antidepressant 
+      treatment in childhood on objectively measured mental health indicators and economic outcomes over time, 
+      and the first attempt to investigate under- vs over-treatment. Leveraging conditional random assignment 
+      of patients to psychiatrists with different prescribing tendencies, we find that treatment during ages 
+      8-15 improves test scores at age 16, particularly in Math, increases enrollment in post-compulsory 
+      education at age 18, and that it leads to higher employment and earnings and lower welfare dependence at 
+      ages 25-30. We demonstrate, on average, a reduction in suicide attempts, self-harm, and hospital visits 
+      following AD initiation. The gains to treatment are, in general, larger for low SES children, but they 
+      are less likely to be treated. Using a marginal treatment effects framework and Math scores as the focal 
+      outcome, we show positive returns to treatment among the untreated. Policy simulations confirm that expanding
+      treatment among low SES children (and boys) generates substantial net benefits, consistent with 
+      under-treatment in these groups. Our findings underscore the potential of early mental health treatment 
+      to improve longer term economic outcomes and reducing inequality.
+    ]]></abstract>
+    <doc>AD_children.pdf</doc>
+  </wp>
+
+  <wp>
     <id>ml_screening_bc</id>
     <title>An economic approach to machine learning in health policy</title>
     <coauthors>N. Meltem Daysal, Sendhil Mullainathan, Ziad Obermeyer, and Suproteem K. Sarkar</coauthors>
     <date>January 2024</date>
     <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Submitted
-      </span>
+        Currently revising
     ]]></notes>
     <abstract><![CDATA[
       We consider the health effects of "precision" screening policies for cancer guided by algorithms. We 
@@ -265,24 +295,57 @@
     <url></url>
   </wp>
 
-  <wp>
-    <id>ad_children</id>
-    <title>Teen antidepressant use and academic achievement</title>
-    <coauthors>Sonia Bhalotra and N. Meltem Daysal</coauthors>
-    <date>May 2020</date>
-    <notes>Currently revising</notes>
-    <abstract><![CDATA[
-      We investigate the effects of antidepressant use during adolescence on the educational outcomes of treated children. Using the propensity of the first treating specialist to prescribe antidepressants to other children as instrument, we find large and significant benefits from treatment with antidepressants on test scores, especially in maths. Although imprecise, our findings suggest girls benefit more than boys from the pharmaceutical treatment of emotional disorders.
-    ]]></abstract>
-    <doc></doc>
-  </wp>
-
   <!-- Work in progress -->
 
   <wip>
     <id>gps_akm</id>
     <title>GPs and inequality in health</title>
     <coauthors>Janet Currie and N. Meltem Daysal</coauthors>
+    <date></date>
+    <notes></notes>
+    <abstract><![CDATA[]]></abstract>
+  </wip>
+
+  <wip>
+    <id>ig_nature</id>
+    <title>Nature and nurture in the intergenerational transmission of mental health</title>
+    <coauthors>Sonia Bhalotra, N. Meltem Daysal, and Jakob Søgaard</coauthors>
+    <date></date>
+    <notes></notes>
+    <abstract><![CDATA[]]></abstract>
+  </wip>
+
+  <wip>
+    <id>mh_penalty</id>
+    <title>The labor market consequences of perinatal depression</title>
+    <coauthors>Sonia Bhalotra, N. Meltem Daysal, Priyama Majumdar, and Tom Zohar</coauthors>
+    <date></date>
+    <notes></notes>
+    <abstract><![CDATA[]]></abstract>
+  </wip>
+
+  <wip>
+    <id>disability_generosity</id>
+    <title>Disability benefits and risky behavior</title>
+    <coauthors>N. Meltem Daysal, Mikkel H. Pedersen, and Jonathan Zhang</coauthors>
+    <date></date>
+    <notes></notes>
+    <abstract><![CDATA[]]></abstract>
+  </wip>
+
+  <wip>
+    <id>mh_stocks</id>
+    <title>Stock market fluctuations and mental health</title>
+    <coauthors>Alexander Schandlbauer and Daniel Rettl</coauthors>
+    <date></date>
+    <notes></notes>
+    <abstract><![CDATA[]]></abstract>
+  </wip>
+
+  <wip>
+    <id>health_risk_aversion</id>
+    <title>Health shocks and risk aversion</title>
+    <coauthors>Alexander Schandlbauer and Daniel Rettl</coauthors>
     <date></date>
     <notes></notes>
     <abstract><![CDATA[]]></abstract>
