@@ -131,19 +131,11 @@
     <id>rt</id>
     <title>Do medical treatments work for work? Evidence from breast cancer patients</title>
     <coauthors>N. Meltem Daysal, William N. Evans, and Mikkel H. Pedersen</coauthors>
-    <journal></journal>
-    <vol_issue></vol_issue>
-    <pages></pages>
-    <!--
-    -->
-    <date>March 2025</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Conditionally accepted at <em>American Economic Journal: Economic Policy</em>.
-      </span>
-      An earlier version circulated under the title "The economic consequences of breast cancer treatments"
-    ]]>
-    </notes>
+    <journal>American Economic Journal: Economic Policy</journal>
+    <vol_issue>17(4)</vol_issue>
+    <pages>379-409</pages>
+    <date>November 2025</date>
+    <notes></notes>
     <abstract><![CDATA[
       We investigate the effects of radiation therapy on the mortality and economic outcomes of breast cancer 
       patients. We implement a 2SLS strategy within a difference-in-differences framework exploiting variation 
@@ -154,7 +146,7 @@
       therapy can reduce this effect by 70%.
     ]]></abstract>
     <doc>Radiotherapy.pdf</doc>
-    <!-- <doi>10.1007/s13524-013-0248-7</doi> -->
+    <doi>10.1257/pol.20240133</doi>
   </pub>
 
   <!-- Working papers -->
