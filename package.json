@@ -1,0 +1,12 @@
+{
+  "name": "mt-11ty-template",
+  "version": "1.2.0",
+  "private": true,
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+title: Research
+heroTitle: RESEARCH
+heroSubtitle: Please click on the titles for more information
+permalink: /research/index.html
+---
+<section id="pubs"></section>
+<section id="wp"></section>
+<section id="wip"></section>
+<section id="other_pubs"></section>
+<section id="rip"></section>
+<script src="/assets/js/research.js"></script>
+<script>
+(function(){
+  function toggle(e){
+    var a = e.target.closest('a[data-toggle="collapse"]');
+    if(!a) return;
+    var href = a.getAttribute('href') || a.dataset.target;
+    if(!href || href.charAt(0) !== '#') return;
+    e.preventDefault();
+    var target = document.querySelector(href);
+    if(!target) return;
+    var open = target.classList.contains('open');
+    target.classList.toggle('open', !open);
+    a.classList.toggle('collapsed', open);
+  }
+  document.addEventListener('click', toggle, false);
+})();
+</script>

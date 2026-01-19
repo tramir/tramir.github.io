@@ -1,0 +1,23 @@
+{
+  "name": "Mircea Trandafir",
+  "role": "Senior Researcher, Rockwool Foundation Research Unit",
+  "email": "mt@rff.dk",
+  "affiliations": [
+    {
+      "name": "Rockwool Foundation",
+      "url": "https://www.rockwoolfonden.dk"
+    },
+    {
+      "name": "IZA",
+      "url": "https://www.iza.org"
+    }
+  ],
+  "address_lines": [
+    "Rockwool Foundation Research Unit",
+    "Ny Kongensgade 6",
+    "DK 1472, Copenhagen",
+    "Denmark"
+  ],
+  "photo": "/assets/images/profile.jpg",
+  "about": "My primary research interests are in applied microeconomics, especially labor and health economics..."
+}

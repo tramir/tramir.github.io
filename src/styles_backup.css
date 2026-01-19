@@ -1,0 +1,633 @@
+:root{
+  --bg: #f7f7f7;
+  --fg: #222;
+  --muted: #666;
+  --link: #0645ad;
+  --link-visited: #0b0080;
+  --maxw: 900px;
+  --radius: 6px;
+  --divider: #e6e6e6;
+  --abs-bg: #f0f0f0;
+  --abs-border: #d6d6d6;
+  --btn-border: #bdbdbd;
+  --btn-bg: #e9e9e9;
+  --hero-top: #c9cdd3;
+  --hero-bot: #d7dbe0;
+  --btn-bg: #d9d9d9;     /* darker grey background */
+  --btn-border: #999;    /* slightly darker border */
+}
+
+.site-header .main-nav a.is-active {
+  color: #fff;
+  position: relative;
+}
+
+.site-header .main-nav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -3px;
+  height: 1px;
+  background: rgba(255,255,255,0.6);
+}
+
+:focus-visible { outline: 2px solid #6aa4ff; outline-offset: 2px; }
+
+/* Helpful focus affordances */
+.paper-toggle:focus-visible { border-radius: 4px; background: rgba(0,0,0,.04); }
+.site-header .main-nav a:focus-visible,
+.btn:focus-visible { outline: 2px solid #6aa4ff; outline-offset: 3px; }
+
+.sr-only {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+  clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+
+/* Base + background */
+*{box-sizing:border-box}
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #f5f5f7;                 /* slightly cooler grey */
+  background-image: url("/assets/images/paper_texture.png");
+  background-repeat: repeat;
+  background-size: 300px auto;               /* larger tile = gentler pattern */
+  image-rendering: auto;                      /* avoid crisp tiling look */}
+
+body {
+  font-weight: 300; /* lighter body text */
+  color: #777;   /* lighter grey for all text */
+}
+.hero-title,
+.paper-title-inline strong {
+  font-weight: 600; /* keep titles bold for hierarchy */
+}
+
+/* Hero banner (500px) with centered overlay */
+.hero{
+  width:100%;
+  height:240px;
+  background: url("/assets/images/main.jpg") center/cover no-repeat; /* default image */
+  border-top: 0;
+  border-bottom:1px solid var(--hero-bot);
+  position: relative;
+  /* display: grid;
+  place-items: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Research page override */
+body.research .hero {
+  background-image: url("/assets/images/research.jpg");
+}
+
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 0;          /* remove padding that offsets centering */
+}
+/* Dark overlay on top of the hero image */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);       /* adjust darkness (0.4 = 40%) */
+  z-index: 1;
+}
+
+/* Hero text sits above the overlay */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;                       /* white text */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-top: 50px; /* compensate for fixed header height */
+}
+.hero-title{
+  font-weight: 400;
+  letter-spacing: .08em;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  text-transform: uppercase;
+  color: #fff;                       /* ensure white */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.hero-subtitle{
+  margin-top: 1.1rem;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #fff;                       /* ensure white */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Container with triple space after hero */
+.container{
+  max-width: var(--maxw);
+  margin: 4.5rem auto 3rem; /* triple-ish space vs earlier */
+  padding: 0 1.25rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Home page grid: 40% / 60%, aligned top; collapses on small screens */
+.home-grid{
+  display: grid;
+  grid-template-columns: 2fr 3fr;   /* ≈40% / 60% */
+  gap: 2rem;
+  align-items: start;               /* top align both columns */
+}
+
+.home-left { align-self: start; }
+.home-left, .profile-card { width: 100%; }
+.home-left { justify-self: stretch; }
+.home-right { align-self: start; }
+
+/* Profile image card */
+.profile-card{
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+.profile-photo{
+  width: 100%;
+  /* max-width: 360px;   keep it tasteful */
+  max-width: none;
+  border-radius: 5px;
+  display: block;
+  box-shadow: 0 2px 16px rgba(0,0,0,.08);
+}
+
+/* Tighten vertical rhythm on the right column */
+.home-right .about-text,
+.home-right .contact-text{
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 900px){
+  .home-grid{
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .profile-photo{
+    max-width: 280px;
+    margin-inline: auto; /* center on small screens */
+  }
+}
+
+.contact-row {
+  display: flex;
+  align-items: flex-start; /* align icon with first line of text */
+  margin-bottom: 0.75rem;
+}
+.contact-row i {
+  font-size: 1.5em; /* make icons about twice as big */
+  margin-right: 0.6em;
+  line-height: 1;
+}
+.contact-details {
+  flex: 1;
+}
+
+/* Hide default H1/lead on Research page */
+.is-research h1,
+.is-research .lead { display: none; }
+
+/* Section headings */
+/* Align the first section title in the right column with the top of the image */
+.home-right > section:first-child .section-title-lg {
+  margin-top: 0;
+}
+.section-title-lg{
+  font-size: 1.6rem;
+  font-weight: 200;
+  color: #444;       /* slightly lighter grey */
+  margin: 1.75rem 0 .45rem;
+}
+.section-underline{
+  height: 1px;
+  background: var(--divider);
+  margin-bottom: .6rem;
+}
+
+/* Papers — double space between items & slight indent */
+.section-list { margin-top: .25rem; }
+.paper{
+  margin: 1rem 0;           /* double the space between papers */
+  padding: .15rem 0;
+  padding-left: .75rem;     /* slight indent */
+}
+
+/* Summary line blends with page */
+.paper-toggle{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;       /* align to top of first line */
+  gap: 0.6em;
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: transparent;
+  user-select: none;
+}
+.paper-toggle .chev2 {
+  margin-left: 2em;  /* fine-tune if needed */
+}
+.paper-title-inline{
+  font-weight: 600;
+}
+.paper-title-inline {
+  font-weight: 400; 
+  line-height: 1.45;
+}
+.paper-title-inline strong { font-weight: 700; }   /* only the title goes bold */
+.paper-title-inline strong em {
+  font-weight: 700;                                 /* bold-italic for journal */
+  font-style: italic;
+}
+.paper-title-inline .authors{
+  font-weight: 400;
+  color: var(--muted);
+}
+/* Non-toggle papers: look static, no pointer cursor */
+.paper.no-abstract .paper-toggle {
+  cursor: default;
+  display: grid;
+  grid-template-columns: 1fr auto;  /* keep chevron column */
+  align-items: flex-start;
+  gap: 0.6em;
+}
+
+/* Insert an invisible chevron placeholder so spacing matches */
+.paper.no-abstract .paper-toggle::after {
+  content: "";
+  width: 1.2em;   /* same as chevron width */
+  height: 1.2em;
+  display: inline-block;
+  margin-left: 2em; /* align with the chevron */
+}
+
+/* Larger double-down chevron, top-aligned with first line */
+.chev2{
+  align-self: start;
+  margin-top: .15rem;
+  width: 1.2em;             /* about body text size */
+  height: 1.2em;
+  transform: scale(2);
+  position: relative;
+}
+.chev2::before{
+  content: "»";
+  display: inline-block;
+  transform: rotate(90deg);
+  color: #444;
+  font-size: 1.2em;         /* larger chevron */
+  vertical-align: top;    /* align with the top of the first line */
+  line-height: 1;
+  transform-origin: center;
+  transition: transform .2s ease;
+}
+details[open] .chev2::before{ transform: translate(-50%, 0) rotate(270deg); }
+
+/* Animated abstract expansion */
+/* Smooth slide for the whole page reflow */
+/* Smooth slide for the whole page reflow */
+.abstract-wrap{
+  overflow: hidden;
+  height: 0;                 /* collapsed by default */
+  opacity: 0;                /* optional fade */
+  transform: translateY(-2px);
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  transition:
+    height 300ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+/* When open, allow card shadow to render outside the wrapper */
+details[open] .abstract-wrap{
+  overflow: visible;
+}
+
+/* Subtle fade-up entrance for sections */
+.fade-in {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeUp 500ms ease-out forwards;
+}
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .abstract-wrap{
+    transition: none !important;
+  }
+  .chev2::before { transition: none; }
+}
+
+.abstract-card{
+  margin-top: .5rem;
+  border: 1px solid var(--abs-border);
+  border-radius: 6px;
+  background: var(--abs-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.abstract-body{
+  font-size: .95rem;        /* slightly smaller */
+  padding: .6rem .7rem .55rem;
+  color: #333;
+}
+
+/* Stage abstract action buttons */
+.abstract-card .abs-actions {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+/* Buttons row — centered, no divider line */
+/* Buttons row — fluid spacing + wrap on small screens */
+.abs-actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.4em, 6vw, 8em);  /* scales with viewport, min/max bounds */
+  padding: .5rem .6rem .7rem;
+  flex-wrap: wrap;                 /* let buttons wrap if needed */
+}
+
+/* OPEN: buttons fade in late */
+details[open] .abstract-card .abs-actions {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 180ms; /* after expand starts */
+}
+
+/* CLOSE: buttons fade out immediately */
+details:not([open]) .abstract-card .abs-actions {
+  transition-delay: 0ms;
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .65rem;
+  border: 1px solid var(--btn-border);
+  border-radius: 999px;
+  background: var(--btn-bg);
+  text-decoration: none;
+  font-size: clamp(.9rem, 1.6vw, .95rem);  /* fluid text size */
+  color: #111;           /* darker text for contrast */
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.btn:hover{
+  background: #b3b3b3;   /* darker on hover */
+  color: #000;           /* keep text readable */
+}
+
+/* Icon sizing if Academicons / Font Awesome are loaded globally */
+.btn i {
+  font-size: 1.2em;       /* slightly larger for emphasis */
+  line-height: 0;         /* prevent extra vertical space */
+  vertical-align: middle; /* align with text */
+  margin-top: -0.05em;    /* fine-tune adjustment */
+}
+
+/* Scale down Font Awesome solid icons to balance with Academicons */
+.btn i.fa-solid {
+  font-size: 1.05em;   /* slightly smaller */
+}
+
+/* Links (if you still render them) */
+.links { margin-top: .35rem; display: flex; flex-wrap: wrap; gap: .35rem }
+.pill { padding: .22rem .6rem; border: 1px solid #d9d9d9; border-radius: 999px; background: #fff; text-decoration: none; font-size: .9rem; }
+.pill:hover { background: #f6f6f6 }
+
+/* Header bar */
+/* Full-width header bar */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(0,0,0,0.8);  /* 50% transparent */
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: saturate(140%) blur(2px);
+  -webkit-backdrop-filter: saturate(140%) blur(2px); /* Safari */
+}
+
+.site-header__inner {
+  max-width: min(calc(var(--maxw, 960px) * 1.4), 100%);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1rem;
+}
+
+/* Brand */
+.site-header .brand {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+}
+
+/* Nav links */
+.site-header .main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5em;
+}
+
+.site-header .main-nav a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;  /* add/raise a bit from 0.04em */
+  transition: color 0.2s ease;
+}
+
+.site-header .main-nav a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Remove any reserved spacing */
+.site-header,
+.site-header__inner {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Optional: nicer behavior on iOS safe areas (not required) */
+@supports (padding: max(0px)) {
+  .site-header {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Sticky (always visible) footer */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(0,0,0,0.8);              /* same darker glass as header */
+  backdrop-filter: saturate(160%) blur(6px); /* glassy finish */
+  -webkit-backdrop-filter: saturate(160%) blur(6px);
+  display: flex;
+  align-items: center;
+  z-index: 950;                              /* below header (1000), above content */
+  color: #aaa;
+  font-size: 0.9rem;                         /* same as header links */
+}
+
+/* Center content to your extended width (like header) */
+.site-footer__inner {
+  max-width: min(calc(var(--maxw, 960px) * 1.4), 100%);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1rem;
+}
+
+/* Left text */
+.site-footer .footer-left {
+  letter-spacing: 0.06em;  /* matches nav link spacing */
+}
+
+/* Right icon row (Academicons) */
+.site-footer .footer-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;              /* comfy spacing between icons */
+}
+.site-footer .footer-right a {
+  color: #aaa;
+  font-size: 1.2rem;       /* slightly larger for clarity */
+  line-height: 1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.site-footer .footer-right a:hover {
+  color: #fff;
+}
+
+/* Scale up and slightly darken Academicons to match FA weight */
+.site-footer .footer-right .ai {
+  font-size: 1.35rem;   /* bump size a bit vs 1.2rem for FA */
+  color: #aaa;          /* same base color */
+}
+
+/* Optional: extra bold look on hover */
+.site-footer .footer-right .ai:hover {
+  color: #fff;
+}
+
+/* Prevent last content from being hidden behind the fixed footer */
+body { padding-bottom: 60px; }  /* footer height + small buffer */
+
+/* Base: hide the toggle on wide screens */
+.nav-toggle{
+  display: none;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 1.25rem;
+  padding: .25rem .5rem;
+  cursor: pointer;
+}
+
+/* Mobile layout */
+@media (max-width: 992px){
+  .hero{ height: 240px; }
+}
+@media (max-width: 760px){
+  /* Show the toggle button */
+  .nav-toggle{ display: inline-flex; align-items: center; }
+
+  /* Hide the inline nav by default */
+  .site-header .main-nav{
+    position: absolute;
+    top: 50px;             /* directly under the fixed 50px header */
+    right: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: saturate(160%) blur(6px);
+    -webkit-backdrop-filter: saturate(160%) blur(6px);
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: .5rem 0;
+    min-width: clamp(200px, 60vw, 320px);
+    z-index: 1100;
+    border-radius: 0 0 10px 10px;
+  }
+  .site-header .main-nav a{
+    display: block;
+    padding: .8rem 1rem;
+    font-size: 0.95rem;   /* a tad bigger for tappability */
+    color: #ddd;
+  }
+  .site-header .main-nav a:hover{ color: #fff; background: rgba(255,255,255,0.06); }
+
+  /* When open */
+  .site-header.is-nav-open .main-nav{ display: flex; }
+
+  /* Tighten brand so row fits comfortably */
+  .site-header .brand{ font-size: 1.4rem; }
+  .site-header__inner{ padding-inline: .75rem; }
+
+  .hero{ height: 200px; }
+  .hero-title{ font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  .hero-subtitle{ font-size: 1rem; }
+
+}
+
+.skip-link{
+  position:fixed; left:1rem; top:-40px; background:#000; color:#fff;
+  padding:.5rem .75rem; z-index:1100; border-radius:6px; transition:top .2s ease;
+}
+.skip-link:focus { top: 8px; }
