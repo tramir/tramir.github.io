@@ -161,16 +161,6 @@ body {
   position: relative;
 }
 
-.site-header .main-nav a.is-active::after {
-  content: "";
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  bottom: -3px;
-  height: 1px;
-  background: rgba(255,255,255,0.6);
-}
-
 /* Mobile Navigation Toggle */
 .nav-toggle {
   display: none;
@@ -341,6 +331,14 @@ body.research .hero {
   font-size: 1.5em;
   margin-right: 0.6em;
   line-height: 1;
+}
+
+.contact-row svg.icon-feather {
+  width: 1.6em;
+  height: 1.6em;
+  margin-right: 0.6em;
+  margin-top: 0.15em; /* optical vertical centering */
+  flex-shrink: 0;
 }
 
 .contact-details {
@@ -553,9 +551,25 @@ details:not([open]) .abstract-card .abs-actions {
   margin-top: -0.05em;
 }
 
+.btn svg.icon-feather {
+  width: 1.15em;
+  height: 1.15em;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  margin-top: -0.05em;
+  flex-shrink: 0;
+}
+
+.abs-actions .btn {
+  min-width: 12.5em;
+  justify-content: center;
+}
+
+/*
 .btn i.fa-solid {
   font-size: 1.05em;
 }
+*/
 
 /* Pills (legacy links) */
 .links {

@@ -186,13 +186,15 @@
       const docPath = resolvePath(doc, "doc");
       out += '<a class="btn btn-abs btn-doc" href="' + encodeURI(docPath) + '" target="_blank" rel="noopener">' +
             /* '<i class="ai ai-doi" aria-hidden="true"></i><span>Paper</span>' + */
-            '<i class="fa-regular fa-file-pdf" aria-hidden="true"></i><span>Paper</span>' + 
+            /* '<i class="fa-regular fa-file-pdf" aria-hidden="true"></i><span>Paper</span>' + */
+            featherPdfSVG() + '<span>Paper</span>' +
             '</a>';
     }
     if (rep) {
       const repPath = resolvePath(rep, "replication");
       out += '<a class="btn btn-abs btn-rep" href="' + encodeURI(repPath) + '" target="_blank" rel="noopener">' +
-            '<i class="fa-solid fa-code-compare" aria-hidden="true"></i><span>Replication package</span>' +
+            /* '<i class="fa-solid fa-code-compare" aria-hidden="true"></i><span>Replication package</span>' + */
+            featherCodeCompareSVG() + '<span>Replication package</span>' +
             '</a>';
     }
     out += '</div>';
@@ -353,6 +355,33 @@
         }
       });
     });
+  }
+
+  // ---------- Feather icons ---------- 
+
+  function featherCodeCompareSVG() {
+  return `
+    <svg class="icon-feather" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+        aria-hidden="true">
+      <polyline points="16 18 22 12 16 6"></polyline>
+      <polyline points="8 6 2 12 8 18"></polyline>
+    </svg>`;
+  }
+
+  function featherPdfSVG() {
+  return `
+    <svg class="icon-feather" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+        aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="9" y1="15" x2="15" y2="15"/>
+      <line x1="9" y1="11" x2="11.5" y2="11"/>
+      <line x1="13" y1="11" x2="15" y2="11"/>
+    </svg>`;
   }
 
   // ---------- Hero + headings ----------
