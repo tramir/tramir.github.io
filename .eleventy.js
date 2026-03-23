@@ -1,6 +1,7 @@
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/styles.css": "styles.css" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/CV/CV.pdf": "docs/CV.pdf" });
 
   eleventyConfig.addShortcode("buildDate", function() {
     const d = new Date();
