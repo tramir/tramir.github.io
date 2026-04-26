@@ -11,13 +11,6 @@
 
 (function () {
   // ---------- XML helpers ----------
-  function loadXMLDoc(filename) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", filename, false);
-    xhr.send();
-    return xhr.responseXML;
-  }
-
   function getText(node, tag) {
     var el = node.getElementsByTagName(tag)[0];
     return el ? (el.textContent || "").trim() : "";
@@ -39,9 +32,7 @@
 
   function resolvePath(path, type) {
     if (!path) return "";
-    // Already absolute (starts with / or http)
     if (path.startsWith("/") || path.startsWith("http")) return path;
-    // Otherwise prepend default folder
     if (type === "doc") return "/assets/papers/" + path;
     if (type === "replication") return "/assets/replication/" + path;
     return path;
@@ -64,11 +55,9 @@
   };
 
   function parseDateValue(s) {
-    // UTC timestamp for sorting; invalid/missing => -Infinity
     if (!s) return -Infinity;
     s = s.trim();
 
-    // YYYY or YYYY-MM or YYYY-MM-DD
     var m = s.match(/^(\d{4})(?:-(\d{1,2})(?:-(\d{1,2}))?)?$/);
     if (m) {
       var y = +m[1];
@@ -77,7 +66,6 @@
       return Date.UTC(y, mo, d);
     }
 
-    // Month YYYY or Mon YYYY
     var m2 = s.match(/^([A-Za-z]{3,9})\s+(\d{4})$/);
     if (m2) {
       var key = m2[1].toLowerCase();
@@ -87,7 +75,6 @@
       }
     }
 
-    // Fallback
     var t = Date.parse(s);
     return isNaN(t) ? -Infinity : t;
   }
@@ -95,7 +82,7 @@
   function monthYearFull(s) {
     if (!s) return "";
     var ts = parseDateValue(s);
-    if (ts === -Infinity) return s; // unknown format, leave as-is
+    if (ts === -Infinity) return s;
     var d = new Date(ts);
     var mon = [
       "January","February","March","April","May","June",
@@ -134,7 +121,6 @@
     }
     if (volIssuePages) parts.push(volIssuePages);
 
-    // Append date at the very end, with a comma before it
     if (date) {
       if (parts.length > 0) {
         parts[parts.length - 1] += ", " + escapeHTML(date);
@@ -150,7 +136,6 @@
   }
 
   function lineWP(it) {
-    // **Title** (with X). Month Year. NOTES
     var title = getText(it, "title") || "(Untitled)";
     var co    = getText(it, "coauthors");
     var date  = monthYearFull(getText(it, "date"));
@@ -165,7 +150,6 @@
   }
 
   function lineWIP(it) {
-    // **Title** (with X). NOTES
     var title = getText(it, "title") || "(Untitled)";
     var co    = getText(it, "coauthors");
     var notes = htmlOrText(it, "notes");
@@ -185,15 +169,12 @@
     if (doc) {
       const docPath = resolvePath(doc, "doc");
       out += '<a class="btn btn-abs btn-doc" href="' + encodeURI(docPath) + '" target="_blank" rel="noopener">' +
-            /* '<i class="ai ai-doi" aria-hidden="true"></i><span>Paper</span>' + */
-            /* '<i class="fa-regular fa-file-pdf" aria-hidden="true"></i><span>Paper</span>' + */
             featherPdfSVG() + '<span>Paper</span>' +
             '</a>';
     }
     if (rep) {
       const repPath = resolvePath(rep, "replication");
       out += '<a class="btn btn-abs btn-rep" href="' + encodeURI(repPath) + '" target="_blank" rel="noopener">' +
-            /* '<i class="fa-solid fa-code-compare" aria-hidden="true"></i><span>Replication package</span>' + */
             featherCodeCompareSVG() + '<span>Replication package</span>' +
             '</a>';
     }
@@ -212,7 +193,7 @@
           var tb = (getText(b.node, "title") || "").toLowerCase();
           return tb.localeCompare(ta);
         }
-        return b.key - a.key; // newest first; undated last
+        return b.key - a.key;
       })
       .map(function (x) { return x.node; });
   }
@@ -228,7 +209,6 @@
       const abs = htmlOrText(it, "abstract");
 
       if (abs) {
-        // Toggleable entry (has abstract)
         html += `<details class="paper">
           <summary class="paper-toggle" role="button" tabindex="0" aria-expanded="false">
             <span class="paper-title-inline">${summary}</span>
@@ -242,7 +222,6 @@
           </div>
         </details>`;
       } else {
-        // Static entry (no abstract) — no <details>, no chevron, no click
         html += `<div class="paper no-abstract">
           <div class="paper-toggle">
             <span class="paper-title-inline">${summary}</span>
@@ -252,8 +231,6 @@
     }
 
     mount.innerHTML = html;
-
-    // Enable animations only for toggleable entries
     wireAnimations(mount);
   }
 
@@ -264,7 +241,6 @@
       const wrap = details.querySelector('.abstract-wrap');
       if (!summary || !wrap) return;
 
-      // Baseline state
       let state = details.hasAttribute('open') ? 'open' : 'closed';
       wrap.style.display = 'block';
       if (state === 'open') {
@@ -280,7 +256,6 @@
       summary.setAttribute('aria-expanded', state === 'open' ? 'true' : 'false');
 
       let animTimer = null;
-
       const clearTimer = () => { if (animTimer) { clearTimeout(animTimer); animTimer = null; } };
 
       const onEnd = (e) => {
@@ -289,11 +264,9 @@
         clearTimer();
         wrap.removeEventListener('transitionend', onEnd);
         if (state === 'opening') {
-          // settle to auto
           wrap.style.height = 'auto';
           state = 'open';
         } else if (state === 'closing') {
-          // finished closing
           details.removeAttribute('open');
           state = 'closed';
         }
@@ -301,41 +274,32 @@
 
       const openAnim = () => {
         state = 'opening';
-        details.setAttribute('open', ''); // so [open] CSS (chevron) applies immediately
-        // measure end height
+        details.setAttribute('open', '');
         wrap.style.height = 'auto';
         const end = wrap.scrollHeight;
         wrap.style.height = '0px';
         wrap.style.opacity = '0';
         wrap.style.transform = 'translateY(-2px)';
-        // force layout
         void wrap.offsetWidth;
-        // animate
         wrap.addEventListener('transitionend', onEnd);
         wrap.style.height = end + 'px';
         wrap.style.opacity = '1';
         wrap.style.transform = 'translateY(0)';
-        // fallback if transitionend is missed
         animTimer = setTimeout(onEnd, 400);
       };
 
       const closeAnim = () => {
         state = 'closing';
-        // lock current height (auto -> px)
         const start = wrap.scrollHeight;
         wrap.style.height = start + 'px';
-        // force layout
         void wrap.offsetWidth;
-        // animate to 0
         wrap.addEventListener('transitionend', onEnd);
         wrap.style.height = '0px';
         wrap.style.opacity = '0';
         wrap.style.transform = 'translateY(-2px)';
-        // fallback
         animTimer = setTimeout(onEnd, 400);
       };
 
-      // Keyboard activation (Enter/Space)
       summary.addEventListener('keydown', (e) => {
         if (e.key === ' ' || e.key === 'Enter') {
           e.preventDefault();
@@ -345,7 +309,7 @@
 
       summary.addEventListener('click', (evt) => {
         evt.preventDefault();
-        if (state === 'opening' || state === 'closing') return; // ignore while animating
+        if (state === 'opening' || state === 'closing') return;
         if (state === 'closed') {
           openAnim();
           summary.setAttribute('aria-expanded', 'true');
@@ -357,10 +321,10 @@
     });
   }
 
-  // ---------- Feather icons ---------- 
+  // ---------- Feather icons ----------
 
   function featherCodeCompareSVG() {
-  return `
+    return `
     <svg class="icon-feather" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24" fill="none" stroke="currentColor"
         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -371,7 +335,7 @@
   }
 
   function featherPdfSVG() {
-  return `
+    return `
     <svg class="icon-feather" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24" fill="none" stroke="currentColor"
         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -384,18 +348,7 @@
     </svg>`;
   }
 
-  // ---------- Hero + headings ----------
-  function ensureHero() {
-    // var hero = document.querySelector(".hero");
-    // if (!hero) return;
-    // hero.innerHTML =
-    //   '<div class="hero-overlay">' +
-    //     '<div class="hero-title">RESEARCH</div>' +
-    //     '<div class="hero-subtitle"><em>Please click on the titles for more information</em></div>' +
-    //   '</div>';
-    // No-op: hero title/subtitle are rendered by base.njk from front matter.
-  }
-
+  // ---------- Section headings ----------
   function ensureHeadings() {
     var container = document.querySelector(".container");
     if (!container) return;
@@ -414,16 +367,11 @@
       var id = pair[0], title = pair[1];
       var sec = document.createElement("section");
       sec.className = "research-section";
+      sec.setAttribute("aria-labelledby", id + "-heading");
       sec.innerHTML =
-        '<section class="research-section" aria-labelledby="' + id + '-heading">' +
         '<h2 id="' + id + '-heading" class="section-title-lg">' + title + '</h2>' +
         '<div class="section-underline"></div>' +
-        '<div id="' + id + '" class="section-list"></div>' +
-      '</section>';
-      // sec.innerHTML =
-      //   '<h2 class="section-title-lg">' + title + '</h2>' +
-      //   '<div class="section-underline"></div>' +
-      //   '<div id="' + id + '" class="section-list"></div>';
+        '<div id="' + id + '" class="section-list"></div>';
       root.appendChild(sec);
     });
 
@@ -432,12 +380,30 @@
   }
 
   // ---------- Init ----------
-  function init() {
+  async function init() {
     document.body.classList.add("is-research");
-    // ensureHero();
     ensureHeadings();
 
-    var xml = loadXMLDoc("/assets/xml/research.xml");
+    let xml;
+    try {
+      const resp = await fetch("/assets/xml/research.xml", { cache: "no-cache" });
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      const text = await resp.text();
+      xml = new DOMParser().parseFromString(text, "application/xml");
+      if (xml.getElementsByTagName("parsererror").length) {
+        throw new Error("XML parse error");
+      }
+    } catch (err) {
+      console.error("Failed to load research.xml:", err);
+      const container = document.querySelector(".container");
+      if (container) {
+        container.insertAdjacentHTML(
+          "beforeend",
+          '<p style="color:#a33;margin-top:1rem;">Could not load the research list. Please try reloading the page.</p>'
+        );
+      }
+      return;
+    }
 
     renderList(xml, "pub",        "pubs",       linePub);
     renderList(xml, "wp",         "wp",         lineWP);
@@ -445,7 +411,6 @@
     renderList(xml, "other_pub",  "other_pubs", linePub);
     renderList(xml, "rip",        "rip",        lineWP);
 
-    // Trigger fade-in animations after content is injected
     requestAnimationFrame(() => {
       document.querySelectorAll('#pubs, #wp, #wip, #other_pubs, #rip').forEach(el => {
         el.classList.add('fade-in');
@@ -453,5 +418,9 @@
     });
   }
 
-  window.addEventListener("load", init);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();

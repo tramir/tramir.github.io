@@ -458,7 +458,7 @@ body.research .hero {
 }
 
 details[open] .chev2::before {
-  transform: translate(-50%, 0) rotate(270deg);
+  transform: rotate(270deg);
 }
 
 /* ==========================================================================
