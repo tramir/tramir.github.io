@@ -1,9 +1,7 @@
 ---
 layout: layouts/base.njk
 title: Mircea Trandafir
-heroTitle: MIRCEA TRANDAFIR
-heroSubtitle: Senior Researcher, ROCKWOOL Foundation
-pageDescription: Mircea Trandafir — applied microeconomist at the ROCKWOOL Foundation. Research on health and labor economics.
+pageDescription: Mircea Trandafir — applied microeconomist at the Rockwool Foundation Research Unit. Research on labor, health, and mental-health economics.
 permalink: /
 ---
 
@@ -17,27 +15,25 @@ permalink: /
 
   <!-- Right column: content sections -->
   <section class="home-right">
-    <section aria-labelledby="about-heading" class="fade-in">
-      <h2 id="about-heading" class="section-title-lg">About me</h2>
-      <div class="section-underline"></div>
+    <section class="fade-in">
+      <h1 class="home-name">Mircea Trandafir</h1>
+      <p class="home-role">Senior Researcher, ROCKWOOL Foundation</p>
       <div class="about-text">
         <p>
-          I am a senior researcher at the
-          <a href="https://en.rockwoolfonden.dk/" target="_blank" rel="noopener">ROCKWOOL Foundation</a>
-          in Copenhagen, Denmark, and a Research Fellow at 
-          <a href="https://www.iza.org/" target="_blank" rel="noopener">IZA@LISER</a>.
+          I am a senior researcher in the Research Unit at the
+          <a href="https://en.rockwoolfonden.dk/" target="_blank" rel="noopener">Rockwool Foundation</a>
+          and a Research Fellow at <a href="https://www.iza.org/" target="_blank" rel="noopener">IZA</a>.
         </p>
         <p>
           My primary research interests are in applied microeconomics, especially labor and health economics.
           My recent work looks into the health and non-health benefits of medical treatments, and into the link
-          between health (particularly mental health) and the labor market.
+          between health, both physical and mental, and the labor market.
         </p>
       </div>
     </section>
 
-    <section aria-labelledby="contact-heading" class="contact-section fade-in">
-      <h2 id="contact-heading" class="section-title-lg">Contact information</h2>
-      <div class="section-underline"></div>
+    <section aria-labelledby="contact-heading" class="contact-section contact-compact fade-in">
+      <h3 id="contact-heading" class="contact-heading-small">Contact</h3>
       <div class="contact-text">
         <div class="contact-row">
           <svg class="icon-feather" xmlns="http://www.w3.org/2000/svg"
@@ -60,13 +56,27 @@ permalink: /
             <path d="M5 10v10h14V10"/>
           </svg>
           <div class="contact-details">
-            ROCKWOOL Foundation<br/>
-            Ny Kongensgade 6<br/>
-            DK 1472, Copenhagen<br/>
-            Denmark
+            Ny Kongensgade 6, DK-1472 Copenhagen, Denmark
           </div>
         </div>
       </div>
     </section>
   </section>
 </div>
+
+<section class="featured-section fade-in" aria-labelledby="featured-pubs-heading featured-wp-heading">
+  <div class="featured-col">
+    <h2 id="featured-pubs-heading" class="section-title-lg">Selected publications</h2>
+    <div class="section-underline"></div>
+    <div id="featured-pubs" class="featured-list"></div>
+    <a href="/research/#pubs-heading" class="featured-more">All publications &rarr;</a>
+  </div>
+  <div class="featured-col">
+    <h2 id="featured-wp-heading" class="section-title-lg">Recent working papers</h2>
+    <div class="section-underline"></div>
+    <div id="featured-wp" class="featured-list"></div>
+    <a href="/research/#wp-heading" class="featured-more">All working papers &rarr;</a>
+  </div>
+</section>
+
+<script src="/assets/js/home.js"></script>

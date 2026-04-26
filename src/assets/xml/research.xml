@@ -19,6 +19,7 @@
     <doc>BW_Spillovers.pdf</doc>
     <doi>10.1162/rest_a_00982</doi>
     <replication>https://doi.org/10.7910/DVN/LWVAKX</replication>
+    <featured>true</featured>
   </pub>
 
   <pub>
@@ -74,6 +75,7 @@
     ]]></abstract>
     <doc>NL_Homebirths.pdf</doc>
     <doi>10.1257/app.20120359</doi>
+    <featured>true</featured>
   </pub>
 
   <pub>
@@ -148,6 +150,8 @@
     ]]></abstract>
     <doc>Radiotherapy.pdf</doc>
     <doi>10.1257/pol.20240133</doi>
+    <replication>https://doi.org/10.3886/E224401V1</replication>
+    <featured>true</featured>
   </pub>
 
   <!-- Working papers -->
@@ -156,10 +160,10 @@
     <id>mh_penalty</id>
     <title>Postpartum depression and the motherhood penalty</title>
     <coauthors>Sonia Bhalotra, N. Meltem Daysal, Louis Fréget, Jonas Cuzulan Hirani, Priyama Majumdar, Miriam Wüst, and Tom Zohar</coauthors>
-    <date>March 2026</date>
+    <date>January 2026</date>
     <notes><![CDATA[
       <span style="font-weight: bold;">
-        Submitted
+        Submitted.
       </span>
     ]]></notes>
     <abstract><![CDATA[
@@ -171,6 +175,7 @@
       contributor to the motherhood penalty.
     ]]></abstract>
     <doc>Postpartum_Depression_Penalty.pdf</doc>
+    <featured>true</featured>
   </wp>
 
   <wp>
@@ -179,7 +184,9 @@
     <coauthors>Sonia Bhalotra and N. Meltem Daysal</coauthors>
     <date>July 2025</date>
     <notes><![CDATA[
-      Currently revising.
+      <span style="font-weight: bold;">
+        Currently revising.
+      </span>
       An earlier version circulated under the title "Teen antidepressant use and academic achievement"
     ]]></notes>
     <abstract><![CDATA[
@@ -201,6 +208,7 @@
       to improve longer term economic outcomes and reducing inequality.
     ]]></abstract>
     <doc>AD_children.pdf</doc>
+    <featured>true</featured>
   </wp>
 
   <wp>
@@ -209,7 +217,9 @@
     <coauthors>N. Meltem Daysal, Sendhil Mullainathan, Ziad Obermeyer, and Suproteem K. Sarkar</coauthors>
     <date>January 2024</date>
     <notes><![CDATA[
-        Currently revising
+      <span style="font-weight: bold;">
+        Currently revising.
+      </span>
     ]]></notes>
     <abstract><![CDATA[
       We consider the health effects of "precision" screening policies for cancer guided by algorithms. We 
@@ -247,6 +257,7 @@
       their employees.
     ]]></abstract>
     <doc>Flu.pdf</doc>
+    <featured>true</featured>
   </wp>
 
   <wp>
@@ -254,7 +265,11 @@
     <title>Language of instruction and educational outcomes: Evidence from an education policy in Rwanda</title>
     <coauthors>Dieudonné Tamfutu Munsi</coauthors>
     <date>October 2021</date>
-    <!-- <notes>Currently revising</notes> -->
+    <notes><![CDATA[
+      <span style="font-weight: bold;">
+        Currently revising.
+      </span>
+    ]]></notes>
     <abstract><![CDATA[
       We investigate the effects on educational outcomes of a sudden change in the language of instruction 
       in Rwanda from one non-native language (French) to another (English). This change, enacted in 2008, 
@@ -274,7 +289,11 @@
     <title>The effects of education policy on teen pregnancy</title>
     <coauthors>Dieudonné Tamfutu Munsi</coauthors>
     <date>October 2021</date>
-    <!-- <notes>Currently revising</notes> -->
+    <notes><![CDATA[
+      <span style="font-weight: bold;">
+        Currently revising.
+      </span>
+    ]]></notes>
     <abstract><![CDATA[
       More education is generally associated with delayed marriage and fertility. We investigate the causal 
       link between a policy that plausibly reduced educational attainment in Rwanda and teen fertility. In
@@ -293,7 +312,11 @@
     <title>Education policies and the intergenerational transmission of health: Evidence from Rwanda</title>
     <coauthors>Dieudonné Tamfutu Munsi</coauthors>
     <date>October 2021</date>
-    <!-- <notes>Currently revising</notes> -->
+    <notes><![CDATA[
+      <span style="font-weight: bold;">
+        Currently revising.
+      </span>
+    ]]></notes>
     <abstract><![CDATA[
       While better health has been shown to lead to more education, both in the developed and in the
       developing world, the causal link from education to health is less clear. In this paper, we examine
@@ -470,47 +493,5 @@
     <doc></doc>
     <doi>http://dx.doi.org/10.1596/1813-9450-5442</doi>
   </other_pub>
-
-  <!-- Permanent working papers -->
-
-  <rip>
-    <id>NL_Heterogeneity</id>
-    <title>Heterogeneous effects of medical interventions on the health of low-risk newborns</title>
-    <coauthors>N. Meltem Daysal and Reyn van Ewijk</coauthors>
-    <date>November 2016</date>
-    <notes>An earlier version is available as IZA Discussion Paper No. 9810</notes>
-    <abstract><![CDATA[
-      We investigate heterogeneity in the impact of early-life medical interventions on low-risk
-      newborns' health. A policy rule in The Netherlands creates large discontinuities in medical
-      treatments at gestational week 37. Using a regression discontinuity design, we find no health
-      benefits from additional treatments for average newborns. However, there is substantial
-      heterogeneity in returns to treatments, with significant health benefits for newborns in the
-      lowest income quartile and no benefits in higher income quartiles. We provide suggestive evidence
-      that potential difficulties in risk screening among low-income women cause this heterogeneity.
-      "Back-of-the-envelope" calculations suggest that providing additional treatments to
-      all low-risk births as per the current policy rule is barely efficient, but a targeted policy
-      focusing on low-income areas would be highly cost-effective.
-    ]]></abstract>
-    <doc>NL_Heterogeneity.pdf</doc>
-  </rip>
-
-  <rip>
-    <id>GYN_Midwife</id>
-    <title>Returns to childbirth technologies: Evidence from preterm births</title>
-    <coauthors>N. Meltem Daysal and Reyn van Ewijk</coauthors>
-    <date>December 2013</date>
-    <notes>An earlier version is available as IZA Discussion Paper No. 7834</notes>
-    <abstract><![CDATA[
-      We investigate the impact of obstetrician supervision, as opposed to midwife supervision, on
-      the health of low-risk newborns. We exploit a unique policy rule in the Netherlands that creates
-      a large discontinuity in the probability of a low-risk birth being attended by an obstetrician
-      at gestational week 37. Using a fuzzy regression discontinuity design, we consistently find no
-      health benefits from obstetrician supervision, despite increased neonatal intensive care unit
-      admission rates among births supervised by obstetricians. These results indicate potential cost
-      savings from shifting supervision of low-risk deliveries, which represent the vast majority of
-      all births, from obstetricians to midwives.
-    ]]></abstract>
-    <doc>GYN_Midwife_old.pdf</doc>
-  </rip>
 
 </research_info>

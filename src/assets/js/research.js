@@ -1,6 +1,6 @@
 /**
  * research.js — Research page renderer (with animated abstracts)
- * Sections (order): <pub>, <wp>, <wip>, <other_pub>, <rip>
+ * Sections (order): <wp>, <wip>, <pub>, <other_pub>
  * - Sorts each section by <date> descending. Undated => bottom.
  * - Publications: Journal block is "vol(issue), pages, Month Year" (date last, with comma).
  * - Only Title is bold; only Journal is bold-italic; other text normal weight.
@@ -93,7 +93,11 @@
 
   // ---------- Summary line formatters ----------
   function ensureFinalPeriod(str) {
-    return /\.\s*$/.test(str) ? str : (str + ".");
+    // Strip any trailing HTML tags before checking, so a period at the end of
+    // text inside a <span>, <em>, etc. counts as a sentence terminator. We
+    // only strip from the right; tags elsewhere in the string are left alone.
+    var stripped = str.replace(/(?:\s*<\/?[a-zA-Z][^>]*>)+\s*$/, "");
+    return /[.!?]\s*$/.test(stripped) ? str : (str + ".");
   }
 
   function linePub(it) {
@@ -354,11 +358,10 @@
     if (!container) return;
 
     var sections = [
-      ["pubs", "Publications"],
       ["wp", "Working papers"],
       ["wip", "Work in progress"],
-      ["other_pubs", "Other publications"],
-      ["rip", "Permanent Working Papers (RIP)"]
+      ["pubs", "Publications"],
+      ["other_pubs", "Other publications"]
     ];
 
     var root = document.createElement("div");
@@ -409,12 +412,28 @@
     renderList(xml, "wp",         "wp",         lineWP);
     renderList(xml, "wip",        "wip",        lineWIP);
     renderList(xml, "other_pub",  "other_pubs", linePub);
-    renderList(xml, "rip",        "rip",        lineWP);
 
     requestAnimationFrame(() => {
-      document.querySelectorAll('#pubs, #wp, #wip, #other_pubs, #rip').forEach(el => {
+      document.querySelectorAll('#pubs, #wp, #wip, #other_pubs').forEach(el => {
         el.classList.add('fade-in');
       });
+
+      // The headings (#wp-heading, #pubs-heading, etc.) are created here, after
+      // the browser has already tried to honor any URL hash. Scroll manually so
+      // links like /research/#pubs-heading land on the right section, offset by
+      // the height of the fixed site header.
+      if (window.location.hash) {
+        var target = document.getElementById(window.location.hash.slice(1));
+        if (target) {
+          // requestAnimationFrame ensures layout is committed before we measure.
+          requestAnimationFrame(() => {
+            var header = document.querySelector('.site-header');
+            var headerH = header ? header.getBoundingClientRect().height : 0;
+            var top = target.getBoundingClientRect().top + window.scrollY - headerH - 12;
+            window.scrollTo({ top: top, behavior: 'auto' });
+          });
+        }
+      }
     });
   }
 
