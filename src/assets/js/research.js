@@ -75,6 +75,13 @@
       }
     }
 
+    // "31 March 2016" (day-level, e.g. dailies)
+    var m3 = s.match(/^(\d{1,2})\s+([A-Za-z]{3,9})\s+(\d{4})$/);
+    if (m3) {
+      var key3 = m3[2].toLowerCase();
+      if (MONTHS.hasOwnProperty(key3)) return Date.UTC(+m3[3], MONTHS[key3], +m3[1]);
+    }
+
     var t = Date.parse(s);
     return isNaN(t) ? -Infinity : t;
   }
@@ -82,6 +89,7 @@
   function monthYearFull(s) {
     if (!s) return "";
     if (/^\d{4}$/.test(s.trim())) return s.trim(); // year-only: don't invent a month
+    if (/^\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4}$/.test(s.trim())) return s.trim(); // day-level: show as written
     var ts = parseDateValue(s);
     if (ts === -Infinity) return s;
     var d = new Date(ts);
