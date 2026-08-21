@@ -63,19 +63,31 @@ permalink: /
   </section>
 </div>
 
+{% if research.featured.pubs.length or research.featured.wp.length %}
 <section class="featured-section fade-in" aria-labelledby="featured-pubs-heading featured-wp-heading">
+  {% if research.featured.pubs.length %}
   <div class="featured-col">
     <h2 id="featured-pubs-heading" class="section-title-lg">Selected publications</h2>
     <div class="section-underline"></div>
-    <div id="featured-pubs" class="featured-list"></div>
+    <div id="featured-pubs" class="featured-list">
+      {% for item in research.featured.pubs %}
+      <div class="featured-item">{{ item.short | safe }}</div>
+      {% endfor %}
+    </div>
     <a href="/research/#pubs-heading" class="featured-more">All publications &rarr;</a>
   </div>
+  {% endif %}
+  {% if research.featured.wp.length %}
   <div class="featured-col">
     <h2 id="featured-wp-heading" class="section-title-lg">Recent working papers</h2>
     <div class="section-underline"></div>
-    <div id="featured-wp" class="featured-list"></div>
+    <div id="featured-wp" class="featured-list">
+      {% for item in research.featured.wp %}
+      <div class="featured-item">{{ item.short | safe }}</div>
+      {% endfor %}
+    </div>
     <a href="/research/#wp-heading" class="featured-more">All working papers &rarr;</a>
   </div>
+  {% endif %}
 </section>
-
-<script src="/assets/js/home.js"></script>
+{% endif %}

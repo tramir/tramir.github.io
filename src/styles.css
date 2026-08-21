@@ -378,6 +378,7 @@ body {
   margin: 1rem 0;
   padding: .15rem 0;
   padding-left: .75rem;
+  scroll-margin-top: 70px; /* items have id="<xml id>" for deep links */
 }
 
 .paper-toggle {
@@ -469,6 +470,11 @@ details[open] .chev2 {
 
 details[open] .abstract-wrap {
   overflow: visible;
+  /* No-JS fallback: native <details> toggle shows the abstract. With JS,
+     inline styles set by research.js take precedence and animate instead. */
+  height: auto;
+  opacity: 1;
+  transform: none;
 }
 
 .abstract-card {
