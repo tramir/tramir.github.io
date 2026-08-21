@@ -5,6 +5,9 @@ permalink: /research/index.html
 ---
 {# Lists are built at build time from src/assets/xml/research.xml (see src/_data/research.js). #}
 <div class="research-root">
+<nav class="section-nav" aria-label="Sections">
+  {% for section in research.sections %}<a href="#{{ section.id }}-heading">{{ section.title }}</a>{% endfor %}
+</nav>
 {% for section in research.sections %}
   <section class="research-section" aria-labelledby="{{ section.id }}-heading">
     <h2 id="{{ section.id }}-heading" class="section-title-lg">{{ section.title }}</h2>

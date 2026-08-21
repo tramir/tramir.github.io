@@ -1,10 +1,12 @@
 /**
- * research.js — Animated abstract expansion for the research page.
+ * research.js — Research page behavior.
  *
  * The lists themselves are rendered at build time (src/_data/research.js +
- * src/research.njk). This script only animates the <details> open/close by
- * transitioning the .abstract-wrap height. Without JS, the native <details>
- * toggle still works (see the details[open] .abstract-wrap rule in styles.css).
+ * src/research.njk). This script animates the <details> open/close by
+ * transitioning the .abstract-wrap height, and opens the paper addressed by
+ * the URL hash (e.g. /research/#bw_spillovers, linked from the home page).
+ * Without JS, the native <details> toggle still works (see the
+ * details[open] .abstract-wrap rule in styles.css).
  */
 
 (function () {
@@ -94,8 +96,27 @@
     });
   }
 
+  function paperFromHash() {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return null;
+    const el = document.getElementById(id);
+    return el && el.matches('details.paper') ? el : null;
+  }
+
   function init() {
+    // Open the linked paper before wiring so it renders open without animating.
+    const target = paperFromHash();
+    if (target) target.setAttribute('open', '');
+
     wireAnimations(document);
+
+    // In-page hash changes (e.g. a link to another paper): animate open.
+    window.addEventListener('hashchange', () => {
+      const el = paperFromHash();
+      if (el && !el.hasAttribute('open')) {
+        el.querySelector('summary.paper-toggle').click();
+      }
+    });
   }
 
   if (document.readyState === 'loading') {

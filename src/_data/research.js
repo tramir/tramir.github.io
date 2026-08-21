@@ -7,10 +7,11 @@
  *                        (wp, wip, pubs, other_pubs)
  *   research.featured  — { pubs: [...], wp: [...] } for the home page
  *
- * Each item: { id, citation, short, abstract, doc, replication, doi, featured }
+ * Each item: { id, url, citation, short, abstract, doc, replication, doi, featured }
+ *   url      — "/research/#<id>" (the research page opens that abstract)
  *   citation — full HTML line for the research page (title bold, journal
  *              bold-italic, "vol(issue), pages, Month Year", notes)
- *   short    — compact HTML line for the home page (year only)
+ *   short    — compact HTML line for the home page (year only, title linked)
  *   abstract — HTML (from CDATA); empty string if none
  *
  * Conventions (same as the previous client-side renderer):
@@ -111,8 +112,10 @@ function ensureFinalPeriod(str) {
   return /[.!?]\s*$/.test(stripped) ? str : str + ".";
 }
 
-function titleAndCoauthors(it) {
-  let s = "<strong>" + escapeHTML(it.title || "(Untitled)") + "</strong>";
+function titleAndCoauthors(it, linked) {
+  let title = escapeHTML(it.title || "(Untitled)");
+  if (linked && it.url) title = '<a href="' + it.url + '">' + title + "</a>";
+  let s = "<strong>" + title + "</strong>";
   if (it.coauthors) s += " (with " + escapeHTML(it.coauthors) + ")";
   return s;
 }
@@ -157,7 +160,7 @@ function lineWIP(it) {
 
 // Home page: **Title** (with Coauthors). _Journal_, Year.
 function shortPub(it) {
-  let s = titleAndCoauthors(it) + ".";
+  let s = titleAndCoauthors(it, true) + ".";
   const year = yearOnly(it.date);
   if (it.journal) {
     s += " <em>" + escapeHTML(it.journal) + "</em>";
@@ -171,7 +174,7 @@ function shortPub(it) {
 
 // Home page: **Title** (with Coauthors). Month Year.
 function shortWP(it) {
-  let s = titleAndCoauthors(it) + ".";
+  let s = titleAndCoauthors(it, true) + ".";
   const date = monthYearFull(it.date);
   if (date) s += " " + escapeHTML(date) + ".";
   return s;
@@ -200,6 +203,7 @@ function normalize(node, kind) {
     doi: text(node.doi),
     featured: isFeatured(node)
   };
+  it.url = it.id ? "/research/#" + it.id : "";
   it.sortKey = parseDateValue(it.date);
   it.citation = kind === "wip" ? lineWIP(it) : kind === "wp" ? lineWP(it) : linePub(it);
   it.short = kind === "wp" ? shortWP(it) : shortPub(it);
