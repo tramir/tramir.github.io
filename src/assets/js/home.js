@@ -71,6 +71,7 @@
 
   function monthYearFull(s) {
     if (!s) return "";
+    if (/^\d{4}$/.test(s.trim())) return s.trim(); // year-only: don't invent a month
     var ts = parseDateValue(s);
     if (ts === -Infinity) return s;
     var d = new Date(ts);

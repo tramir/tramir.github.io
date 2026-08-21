@@ -81,6 +81,7 @@
 
   function monthYearFull(s) {
     if (!s) return "";
+    if (/^\d{4}$/.test(s.trim())) return s.trim(); // year-only: don't invent a month
     var ts = parseDateValue(s);
     if (ts === -Infinity) return s;
     var d = new Date(ts);
@@ -195,7 +196,7 @@
         if (a.key === b.key) {
           var ta = (getText(a.node, "title") || "").toLowerCase();
           var tb = (getText(b.node, "title") || "").toLowerCase();
-          return tb.localeCompare(ta);
+          return ta.localeCompare(tb);
         }
         return b.key - a.key;
       })
