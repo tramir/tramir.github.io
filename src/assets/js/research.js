@@ -393,7 +393,6 @@
 
   // ---------- Init ----------
   async function init() {
-    document.body.classList.add("is-research");
     ensureHeadings();
 
     let xml;

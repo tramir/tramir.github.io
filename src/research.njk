@@ -4,20 +4,3 @@ title: Research
 permalink: /research/index.html
 ---
 <script src="/assets/js/research.js"></script>
-<script>
-(function(){
-  function toggle(e){
-    var a = e.target.closest('a[data-toggle="collapse"]');
-    if(!a) return;
-    var href = a.getAttribute('href') || a.dataset.target;
-    if(!href || href.charAt(0) !== '#') return;
-    e.preventDefault();
-    var target = document.querySelector(href);
-    if(!target) return;
-    var open = target.classList.contains('open');
-    target.classList.toggle('open', !open);
-    a.classList.toggle('collapsed', open);
-  }
-  document.addEventListener('click', toggle, false);
-})();
-</script>
