@@ -149,14 +149,9 @@ body {
   background: transparent;
   border: 0;
   color: #fff;
+  font-size: 1.25rem;
   padding: .25rem .5rem;
   cursor: pointer;
-}
-
-.nav-toggle svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  display: block;
 }
 
 /* ==========================================================================
@@ -639,8 +634,7 @@ details:not([open]) .abstract-card .abs-actions {
 
 .site-footer .footer-right a {
   color: #aaa;
-  display: inline-flex;
-  align-items: center;
+  font-size: 1.2rem;
   line-height: 1;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -650,10 +644,13 @@ details:not([open]) .abstract-card .abs-actions {
   color: #fff;
 }
 
-.site-footer .footer-right svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  display: block;
+.site-footer .footer-right .ai {
+  font-size: 1.35rem;
+  color: #aaa;
+}
+
+.site-footer .footer-right .ai:hover {
+  color: #fff;
 }
 
 /* ==========================================================================
