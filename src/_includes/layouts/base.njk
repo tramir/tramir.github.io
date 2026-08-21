@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)">
 
   {# Browser tab title: "{page title} — {site title}" unless the page title equals the site title #}
   <title>{% if title and title != site.title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
@@ -65,7 +68,7 @@
 <footer class="site-footer">
   <div class="site-footer__inner">
     <div class="footer-left">
-      © Mircea Trandafir. Last updated: {% buildDate %}
+      © Mircea Trandafir<span class="footer-updated">. Last updated: {% buildDate %}</span>
     </div>
     <div class="footer-right">
       <a href="mailto:mt@rff.dk" title="Email"><i class="fa fa-envelope"></i></a>

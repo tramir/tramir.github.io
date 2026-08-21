@@ -3,13 +3,73 @@
    ========================================================================== */
 
 :root {
-  --bg: #fafafa;
+  color-scheme: light dark;
   --maxw: 900px;
+
+  /* Light palette (default) */
+  --bg: #fafafa;
+  --text: #555;          /* body copy */
+  --text-2: #444;        /* section titles, featured items */
+  --heading: #222;       /* name, paper titles on the home page */
+  --muted: #666;         /* role line */
+  --faint: #888;         /* small caps labels, jump links, contact icons */
+  --link-hover: #000;
   --divider: #e6e6e6;
+  --focus-bg: rgba(0,0,0,.04);
+  --shadow-photo: 0 2px 16px rgba(0,0,0,.08);
+  --shadow-card: 0 2px 8px rgba(0,0,0,.1);
+  --chevron: #444;
+
   --abs-bg: #f0f0f0;
   --abs-border: #d6d6d6;
+  --abs-text: #333;
+
   --btn-bg: #d9d9d9;
   --btn-border: #999;
+  --btn-fg: #111;
+  --btn-bg-hover: #b3b3b3;
+  --btn-fg-hover: #000;
+
+  /* Header/footer chrome */
+  --chrome-bg: rgba(0,0,0,0.8);
+  --chrome-border: transparent;
+  --chrome-fg: #fff;
+  --chrome-muted: #aaa;
+  --chrome-menu-bg: rgba(0,0,0,0.7);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161616;
+    --text: #c4c4c4;
+    --text-2: #d4d4d4;
+    --heading: #f0f0f0;
+    --muted: #9a9a9a;
+    --faint: #8c8c8c;
+    --link-hover: #fff;
+    --divider: #2e2e2e;
+    --focus-bg: rgba(255,255,255,.06);
+    --shadow-photo: 0 2px 16px rgba(0,0,0,.5);
+    --shadow-card: 0 2px 8px rgba(0,0,0,.4);
+    --chevron: #bbb;
+
+    --abs-bg: #1f1f1f;
+    --abs-border: #363636;
+    --abs-text: #d0d0d0;
+
+    --btn-bg: #333;
+    --btn-border: #5a5a5a;
+    --btn-fg: #eee;
+    --btn-bg-hover: #474747;
+    --btn-fg-hover: #fff;
+
+    /* Lighter than the page so the fixed bars stay distinct */
+    --chrome-bg: rgba(42,42,42,0.9);
+    --chrome-border: #3a3a3a;
+    --chrome-fg: #fff;
+    --chrome-muted: #b0b0b0;
+    --chrome-menu-bg: rgba(42,42,42,0.95);
+  }
 }
 
 /* ==========================================================================
@@ -30,7 +90,7 @@ html, body {
 
 body {
   font-weight: 400;
-  color: #555;
+  color: var(--text);
   padding-bottom: 60px; /* prevent content hiding behind fixed footer */
 }
 
@@ -72,7 +132,7 @@ body {
 
 .paper-toggle:focus-visible {
   border-radius: 4px;
-  background: rgba(0,0,0,.04);
+  background: var(--focus-bg);
 }
 
 .site-header .main-nav a:focus-visible,
@@ -91,7 +151,8 @@ body {
   left: 0;
   width: 100%;
   height: 50px;
-  background: rgba(0,0,0,0.8);
+  background: var(--chrome-bg);
+  border-bottom: 1px solid var(--chrome-border);
   display: flex;
   align-items: center;
   z-index: 1000;
@@ -110,7 +171,7 @@ body {
 }
 
 .site-header .brand {
-  color: #fff;
+  color: var(--chrome-fg);
   text-decoration: none;
   font-size: 1.6rem;
   font-weight: 400;
@@ -125,7 +186,7 @@ body {
 }
 
 .site-header .main-nav a {
-  color: #aaa;
+  color: var(--chrome-muted);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 400;
@@ -134,12 +195,12 @@ body {
 }
 
 .site-header .main-nav a:hover {
-  color: #fff;
+  color: var(--chrome-fg);
   text-decoration: none;
 }
 
 .site-header .main-nav a.is-active {
-  color: #fff;
+  color: var(--chrome-fg);
   position: relative;
 }
 
@@ -148,7 +209,7 @@ body {
   display: none;
   background: transparent;
   border: 0;
-  color: #fff;
+  color: var(--chrome-fg);
   font-size: 1.25rem;
   padding: .25rem .5rem;
   cursor: pointer;
@@ -194,13 +255,13 @@ body {
   letter-spacing: 0.04em;
   line-height: 1.1;
   margin: 0 0 .25rem;
-  color: #222;
+  color: var(--heading);
 }
 
 .home-role {
   margin: 0 0 1.25rem;
   font-size: 1.05rem;
-  color: #666;
+  color: var(--muted);
   font-style: italic;
 }
 
@@ -217,7 +278,7 @@ body {
 
 .home-right .about-text,
 .home-right .contact-text {
-  color: #555;
+  color: var(--text);
   font-size: 1.05rem;
   line-height: 1.65;
 }
@@ -246,7 +307,7 @@ body {
   margin-bottom: 1rem;
   font-size: 1rem;
   line-height: 1.5;
-  color: #444;
+  color: var(--text-2);
 }
 
 .featured-item:last-child {
@@ -255,7 +316,7 @@ body {
 
 .featured-item strong {
   font-weight: 700;
-  color: #222;
+  color: var(--heading);
 }
 
 .featured-item a {
@@ -265,9 +326,9 @@ body {
 }
 
 .featured-item a:hover {
-  color: #000;
+  color: var(--link-hover);
   text-decoration: underline;
-  text-decoration-color: #888;
+  text-decoration-color: var(--faint);
   text-underline-offset: 3px;
 }
 
@@ -277,15 +338,15 @@ body {
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: .9rem;
   letter-spacing: 0.04em;
-  color: #555;
+  color: var(--text);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: color .15s ease, border-color .15s ease;
 }
 
 .featured-more:hover {
-  color: #000;
-  border-bottom-color: #888;
+  color: var(--link-hover);
+  border-bottom-color: var(--faint);
 }
 
 /* ==========================================================================
@@ -305,7 +366,7 @@ body {
   max-width: none;
   border-radius: 5px;
   display: block;
-  box-shadow: 0 2px 16px rgba(0,0,0,.08);
+  box-shadow: var(--shadow-photo);
 }
 
 /* ==========================================================================
@@ -341,7 +402,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #888;
+  color: var(--faint);
   margin: 0 0 0.65rem;
 }
 
@@ -358,7 +419,7 @@ body {
   width: 1.15em;
   height: 1.15em;
   margin-top: 0; /* centered, not top-aligned, since lines are short */
-  color: #888;
+  color: var(--faint);
 }
 
 /* ==========================================================================
@@ -368,7 +429,7 @@ body {
 .section-title-lg {
   font-size: 1.6rem;
   font-weight: 300;
-  color: #444;
+  color: var(--text-2);
   margin: 1.75rem 0 .45rem;
   scroll-margin-top: 70px; /* keep heading visible under fixed 50px header when linked via #anchor */
 }
@@ -392,15 +453,15 @@ body {
 }
 
 .section-nav a {
-  color: #888;
+  color: var(--faint);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: color .15s ease, border-color .15s ease;
 }
 
 .section-nav a:hover {
-  color: #000;
-  border-bottom-color: #888;
+  color: var(--link-hover);
+  border-bottom-color: var(--faint);
 }
 
 /* ==========================================================================
@@ -477,10 +538,16 @@ body {
   width: 1.2em;
   height: 1.2em;
   flex-shrink: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='7 13 12 18 17 13'/><polyline points='7 6 12 11 17 6'/></svg>");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  /* Masked so the color comes from --chevron (theme-aware) */
+  background-color: var(--chevron);
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='7 13 12 18 17 13'/><polyline points='7 6 12 11 17 6'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='7 13 12 18 17 13'/><polyline points='7 6 12 11 17 6'/></svg>");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
   transform-origin: center;
   transition: transform .2s ease;
 }
@@ -519,14 +586,14 @@ details[open] .abstract-wrap {
   border: 1px solid var(--abs-border);
   border-radius: 6px;
   background: var(--abs-bg);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-card);
 }
 
 .abstract-body {
   font-size: 1.05rem;
   line-height: 1.55;
   padding: .6rem .7rem .55rem;
-  color: #333;
+  color: var(--abs-text);
 }
 
 /* Abstract action buttons */
@@ -569,13 +636,13 @@ details:not([open]) .abstract-card .abs-actions {
   background: var(--btn-bg);
   text-decoration: none;
   font-size: clamp(.9rem, 1.6vw, .95rem);
-  color: #111;
+  color: var(--btn-fg);
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .btn:hover {
-  background: #b3b3b3;
-  color: #000;
+  background: var(--btn-bg-hover);
+  color: var(--btn-fg-hover);
 }
 
 .btn svg.icon-feather {
@@ -602,13 +669,14 @@ details:not([open]) .abstract-card .abs-actions {
   left: 0;
   width: 100%;
   height: 50px;
-  background: rgba(0,0,0,0.8);
+  background: var(--chrome-bg);
+  border-top: 1px solid var(--chrome-border);
   backdrop-filter: saturate(160%) blur(6px);
   -webkit-backdrop-filter: saturate(160%) blur(6px);
   display: flex;
   align-items: center;
   z-index: 950;
-  color: #aaa;
+  color: var(--chrome-muted);
   font-size: 0.9rem;
 }
 
@@ -633,7 +701,7 @@ details:not([open]) .abstract-card .abs-actions {
 }
 
 .site-footer .footer-right a {
-  color: #aaa;
+  color: var(--chrome-muted);
   font-size: 1.2rem;
   line-height: 1;
   text-decoration: none;
@@ -641,16 +709,16 @@ details:not([open]) .abstract-card .abs-actions {
 }
 
 .site-footer .footer-right a:hover {
-  color: #fff;
+  color: var(--chrome-fg);
 }
 
 .site-footer .footer-right .ai {
   font-size: 1.35rem;
-  color: #aaa;
+  color: var(--chrome-muted);
 }
 
 .site-footer .footer-right .ai:hover {
-  color: #fff;
+  color: var(--chrome-fg);
 }
 
 /* ==========================================================================
@@ -705,7 +773,9 @@ details:not([open]) .abstract-card .abs-actions {
     position: absolute;
     top: 50px;
     right: 0;
-    background: rgba(0,0,0,0.7);
+    background: var(--chrome-menu-bg);
+    border: 1px solid var(--chrome-border);
+    border-top: 0;
     backdrop-filter: saturate(160%) blur(6px);
     -webkit-backdrop-filter: saturate(160%) blur(6px);
     display: none;
@@ -743,6 +813,13 @@ details:not([open]) .abstract-card .abs-actions {
 
   .home-name {
     font-size: 2rem;
+  }
+}
+
+/* Phones: keep the fixed footer to one line */
+@media (max-width: 600px) {
+  .site-footer .footer-updated {
+    display: none;
   }
 }
 
