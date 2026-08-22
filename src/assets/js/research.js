@@ -2,11 +2,12 @@
  * research.js — Research page behavior.
  *
  * The lists themselves are rendered at build time (src/_data/research.js +
- * src/research.njk). This script animates the <details> open/close by
- * transitioning the .abstract-wrap height, and opens the paper addressed by
- * the URL hash (e.g. /research/#bw_spillovers, linked from the home page).
- * Without JS, the native <details> toggle still works (see the
- * details[open] .abstract-wrap rule in styles.css).
+ * src/research.njk). This script (1) animates the <details> open/close by
+ * transitioning the .abstract-wrap height, (2) opens the paper addressed by
+ * the URL hash (e.g. /research/#bw_spillovers, linked from the home page),
+ * and (3) drives the sticky section nav: measures its height into --subnav-h,
+ * marks the current section, and flags when it is stuck. Without JS, the
+ * native <details> toggle and plain anchor links still work.
  */
 
 (function () {
@@ -103,7 +104,54 @@
     return el && el.matches('details.paper') ? el : null;
   }
 
+  function wireSectionNav() {
+    const nav = document.querySelector('.section-nav');
+    const header = document.querySelector('.site-header');
+    if (!nav) return;
+
+    const pairs = Array.from(nav.querySelectorAll('a[href^="#"]'))
+      .map((a) => ({ a, target: document.getElementById(a.getAttribute('href').slice(1)) }))
+      .filter((p) => p.target);
+    if (!pairs.length) return;
+
+    const measure = () => {
+      document.documentElement.style.setProperty('--subnav-h', nav.offsetHeight + 'px');
+    };
+
+    const update = () => {
+      const headerH = header ? header.offsetHeight : 0;
+      const line = headerH + nav.offsetHeight + 16;
+      let current = null;
+      for (const p of pairs) {
+        if (p.target.getBoundingClientRect().top <= line) current = p;
+        else break;
+      }
+      // At the very bottom the last section is current even if its heading
+      // never reaches the top of the viewport.
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
+        current = pairs[pairs.length - 1];
+      }
+      pairs.forEach((p) => p.a.classList.toggle('is-current', p === current));
+      nav.classList.toggle('is-stuck', window.scrollY > 0 && nav.getBoundingClientRect().top <= headerH + 0.5);
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; update(); });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { measure(); update(); });
+    measure();
+    update();
+  }
+
   function init() {
+    wireSectionNav();
+
     // Open the linked paper before wiring so it renders open without animating.
     const target = paperFromHash();
     if (target) target.setAttribute('open', '');

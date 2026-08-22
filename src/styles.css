@@ -440,12 +440,21 @@ body {
   margin-bottom: .6rem;
 }
 
-/* Jump links at the top of the research page */
+/* Jump links on the research page: sticky under the fixed header.
+   research.js measures the nav height into --subnav-h (it wraps on phones),
+   highlights the current section, and toggles .is-stuck. */
 .section-nav {
+  position: sticky;
+  top: 50px; /* header height */
+  z-index: 900;
   display: flex;
   flex-wrap: wrap;
   gap: .4rem 1.5rem;
   margin: 0 0 .5rem;
+  padding: .6rem 0 .5rem;
+  background: var(--bg);
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s ease;
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: .8rem;
   letter-spacing: 0.1em;
@@ -459,9 +468,20 @@ body {
   transition: color .15s ease, border-color .15s ease;
 }
 
-.section-nav a:hover {
+.section-nav a:hover,
+.section-nav a.is-current {
   color: var(--link-hover);
   border-bottom-color: var(--faint);
+}
+
+.section-nav.is-stuck {
+  border-bottom-color: var(--divider);
+}
+
+/* Anchor targets clear the header plus the sticky nav */
+.research-root .section-title-lg,
+.research-root .paper {
+  scroll-margin-top: calc(50px + var(--subnav-h, 36px) + 12px);
 }
 
 /* ==========================================================================
@@ -475,8 +495,7 @@ body {
 .paper {
   margin: 1rem 0;
   padding: .15rem 0;
-  padding-left: .75rem;
-  scroll-margin-top: 70px; /* items have id="<xml id>" for deep links */
+  padding-left: .75rem; /* items have id="<xml id>" for deep links */
 }
 
 .paper-toggle {
