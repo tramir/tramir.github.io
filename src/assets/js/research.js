@@ -6,8 +6,9 @@
  * transitioning the .abstract-wrap height, (2) opens the paper addressed by
  * the URL hash (e.g. /research/#bw_spillovers, linked from the home page),
  * and (3) drives the sticky section nav: measures its height into --subnav-h,
- * marks the current section, and flags when it is stuck. Without JS, the
- * native <details> toggle and plain anchor links still work.
+ * marks the current section, and flags when it is stuck; and (4) opens every
+ * abstract while printing. Without JS, the native <details> toggle and plain
+ * anchor links still work.
  */
 
 (function () {
@@ -151,8 +152,21 @@
     update();
   }
 
+  function wirePrint() {
+    let opened = [];
+    window.addEventListener('beforeprint', () => {
+      opened = Array.from(document.querySelectorAll('details.paper:not([open])'));
+      opened.forEach((d) => d.setAttribute('open', ''));
+    });
+    window.addEventListener('afterprint', () => {
+      opened.forEach((d) => d.removeAttribute('open'));
+      opened = [];
+    });
+  }
+
   function init() {
     wireSectionNav();
+    wirePrint();
 
     // Open the linked paper before wiring so it renders open without animating.
     const target = paperFromHash();

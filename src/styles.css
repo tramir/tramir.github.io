@@ -873,6 +873,85 @@ details:not([open]) .abstract-card .abs-actions {
 }
 
 /* ==========================================================================
+   PRINT
+   ========================================================================== */
+
+@media print {
+  :root {
+    --bg: #fff;
+    --text: #222;
+    --text-2: #111;
+    --heading: #000;
+    --muted: #444;
+    --faint: #666;
+    --divider: #bbb;
+    --abs-bg: transparent;
+    --abs-border: #999;
+    --abs-text: #111;
+    --chevron: transparent;
+  }
+
+  .site-header,
+  .site-footer,
+  .section-nav,
+  .skip-link,
+  .abs-actions,
+  .chev2,
+  .paper.no-abstract .paper-toggle::after {
+    display: none !important;
+  }
+
+  html, body {
+    font-size: 11pt;
+  }
+
+  body {
+    padding-bottom: 0;
+  }
+
+  .container {
+    margin: 0 auto;
+  }
+
+  /* Entrance animation does not run when printing: show content directly */
+  .fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* research.js opens every <details> on beforeprint; show the abstracts */
+  .abstract-wrap {
+    height: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
+
+  .abstract-card {
+    box-shadow: none;
+    margin-right: 0;
+  }
+
+  .paper {
+    break-inside: avoid;
+  }
+
+  .section-title-lg {
+    break-after: avoid;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .profile-photo {
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
    REDUCED MOTION
    ========================================================================== */
 
