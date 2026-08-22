@@ -84,6 +84,8 @@
       });
 
       summary.addEventListener('click', (evt) => {
+        // Links inside the citation (e.g. in notes) navigate instead of toggling.
+        if (evt.target.closest('a')) return;
         evt.preventDefault();
         if (state === 'opening' || state === 'closing') return;
         if (state === 'closed') {

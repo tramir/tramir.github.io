@@ -536,6 +536,18 @@ body {
   color: var(--muted);
 }
 
+.paper-media a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 3px;
+  transition: color .15s ease;
+}
+
+.paper-media a:hover {
+  color: var(--link-hover);
+}
+
 .paper-media__label {
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: .7rem;
@@ -543,7 +555,7 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--faint);
-  margin-right: .6em;
+  margin-right: 1.1em;
 }
 
 .paper-title-inline strong em {
