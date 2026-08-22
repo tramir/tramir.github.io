@@ -7,7 +7,7 @@
 % Links et al.
 \usepackage{hyperref}
 \hypersetup{%
-  pdftitle = {Resume},
+  pdftitle = {Mircea Trandafir -- CV},
   pdfkeywords = {},
   pdfauthor = {Mircea Trandafir},
   pdfstartview = {XYZ null null 1},
@@ -21,39 +21,53 @@
 \usepackage[includefoot, margin=2cm]{geometry}
 
 % Fonts -- handle LuaTeX vs LaTeX
-\usepackage[T1]{fontenc}
-
 \ifluatex
-  \usepackage{inputenc}
   \usepackage{fontspec}
+  \setmainfont{EB Garamond}[Numbers={OldStyle,Proportional}, Ligatures=TeX]
+  \setsansfont{Cabin}[Scale=MatchLowercase]
+  \usepackage[ebgaramond, vvarbb]{newtxmath}
 \else
+  \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage[full]{textcomp}
+  \usepackage[osf, sups, scaled=.96]{garamondx}
+  \usepackage[scaled=.95]{cabin}
+  \usepackage[garamondx, vvarbb]{newtxmath}
 \fi
-
-\usepackage[osf, sups, scaled=.96]{garamondx} % osf (or osfI) for text, not math
-\usepackage[scaled=.95]{cabin} % sans serif
-\usepackage[varqu, varl]{inconsolata} % sans serif typewriter
-\usepackage[garamondx, vvarbb]{newtxmath} % bb from STIX
 \usepackage[cal=boondoxo]{mathalfa} % mathcal
-
 \usepackage{fontawesome5}
 
-% Define the columns for the table that makes up each section
-\definecolor{lightgray}{gray}{0.8}
-\newcolumntype{L}{@{\hspace{-1em}}>{\raggedleft\bgroup}p{0.11\textwidth}<{\egroup}}
+% Colors
+\definecolor{rulecolor}{gray}{0.78}   % vertical rule next to the years
+\definecolor{yearcolor}{gray}{0.42}   % years in the margin
+\definecolor{metacolor}{gray}{0.45}   % "Updated …", contact block
+
+% Year column in gray; text columns as before
+\newcolumntype{L}{@{\hspace{-1em}}>{\raggedleft\leavevmode\color{yearcolor}\bgroup}p{0.11\textwidth}<{\egroup}}
 \newcolumntype{R}{>{\noindent\setlength{\parindent}{1em}}p{0.85\textwidth}}
 \newcolumntype{S}{>{\setlength{\parindent}{1em}}p{0.74\textwidth}}
 \newcolumntype{P}{>{\noindent\setlength{\parindent}{0.5em}\hangindent=2\parindent}p{0.85\textwidth}}
-\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+\newcommand\VRule{\color{rulecolor}\vrule width 0.4pt}
 \setlength{\LTpre}{0pt}
 
-% Section title style
-\titleformat*{\section}{\vspace{0.75ex}\normalsize\bfseries}
-\titlespacing*{\section}{0pt}{*4}{*0.5}
+% Section headings (Garamond): \large, regular weight
+\providecommand{\headingstyle}{\large}
+\titleformat*{\section}{\headingstyle}
+\titlespacing*{\section}{0pt}{*3.5}{*0.8}
+
+% Never leave a section heading alone at the bottom of a page: require room
+% for the heading plus about two table rows, else break before the heading.
+\usepackage{needspace}
+\let\cvsectionorig\section
+\renewcommand{\section}{\needspace{6\baselineskip}\cvsectionorig}
 
 % Spacing
-\renewcommand{\arraystretch}{1.4}
+\renewcommand{\arraystretch}{1.35}
+
+% "Updated August 2026"
+\newcommand{\updatedmonth}{%
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or July\or
+  August\or September\or October\or November\or December\fi\ \the\year}
 
 
 % Lua code for processing publications, working papers, etc.
@@ -268,30 +282,20 @@
 % Current information
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{center}
-  {\LARGE \textbf{Mircea Trandafir}}\\
-  \vspace{1ex}
-  {\normalsize Updated: \today}
-  \vspace{3ex}
-
-  \begin{minipage}[ht]{0.45\textwidth}
-    ROCKWOOL Foundation\\
-    Ny Kongensgade 6\\
-    DK 1472, Copenhagen\\
-    Denmark
-  \end{minipage}
-  \begin{minipage}[b][][t]{0.5\textwidth}
-    \raggedleft
-    % Phone: 
-    % +45 6550 3568 \; \faIcon{phone}\\
-    % Fax: 
-    % +45 6550 3237 \; \faIcon{fax}\\
-    % Email: 
-    \href{mailto:mt@rff.dk}{mt@rff.dk} \; \faIcon{envelope}\\
-    %Webpage: 
-    \href{https://www.mirceatrandafir.com}{www.mirceatrandafir.com} \; \faIcon{globe}
-  \end{minipage}
-\end{center}
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+  {\fontsize{26}{30}\selectfont Mircea Trandafir}\\[1.2ex]
+  {\color{metacolor}\small Updated \updatedmonth}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+  \raggedleft\small\color{metacolor}
+  ROCKWOOL Foundation\\
+  Ny Kongensgade 6, DK-1472 Copenhagen\\[0.4ex]
+  \href{mailto:mt@rff.dk}{mt@rff.dk}\;\faIcon{envelope}\\
+  \href{https://www.mirceatrandafir.com}{www.mirceatrandafir.com}\;\faIcon{globe}
+\end{minipage}
+\vspace{1ex}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -361,7 +365,6 @@
 % Working Papers
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\newpage
 \section*{Working Papers}
 
 \ifluatex
@@ -487,7 +490,6 @@
 % Referee
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
 \section*{Referee}
 
 \begin{longtable}{L!{\VRule}R}
@@ -509,7 +511,7 @@
   \hangindent=2\parindent \emph{University of Southern Denmark:} Applied Econometrics, Demography and Economics, Topics in Econometrics -- Big Data, Causation (European Doctoral School of Demography). \endgraf
   \hangindent=2\parindent \emph{Université de Sherbrooke:} Labor Economics, Econometrics I. \endgraf
   \hangindent=2\parindent \emph{Other:} Efficiency and Productivity Analysis Summer Programme (co-taught, University of Rome Tor Vergata)                                                                                              \\
-  2013 & D\hangindent=2\parindent ean's ``honor roll'' for teaching achievement (course evaluations above 3.7/4), Université de Sherbrooke: \emph{Introduction to econometrics} (undergraduate) and \emph{Labor economics} (graduate). \\
+  2013 & \hangindent=2\parindent Dean's ``honor roll'' for teaching achievement (course evaluations above 3.7/4), Université de Sherbrooke: \emph{Introduction to econometrics} (undergraduate) and \emph{Labor economics} (graduate). \\
   2012 & \hangindent=2\parindent Dean's ``honor roll'' for teaching achievement (course evaluations above 3.7/4), Université de Sherbrooke: \emph{Introduction to econometrics} (undergraduate) and \emph{Labor economics} (graduate). \\
 \end{longtable}
 
