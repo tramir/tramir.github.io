@@ -23,7 +23,10 @@ function lastContentUpdate() {
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/styles.css": "styles.css" });
-  eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  // Everything under src/assets, except the CV's LaTeX source and build files
+  eleventyConfig.addPassthroughCopy({ "src/assets": "assets" }, {
+    filter: ["**/*", "!CV/*.tex", "!CV/build", "!CV/build/**"]
+  });
   eleventyConfig.addPassthroughCopy({ "src/assets/CV/CV.pdf": "docs/CV.pdf" });
 
   eleventyConfig.addPassthroughCopy({ "src/apple-touch-icon.png": "apple-touch-icon.png" });

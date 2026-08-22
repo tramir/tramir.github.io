@@ -1,0 +1,582 @@
+\RequirePackage{ifluatex}
+\documentclass[12pt, a4paper]{article}
+
+% Tables, colors, references, title
+\usepackage{array, xcolor, longtable, titlesec}
+
+% Links et al.
+\usepackage{hyperref}
+\hypersetup{%
+  pdftitle = {Resume},
+  pdfkeywords = {},
+  pdfauthor = {Mircea Trandafir},
+  pdfstartview = {XYZ null null 1},
+  pdfpagelayout = OneColumn,
+  pdfborder = {0 0 0},
+  colorlinks = false,
+}
+
+% Set page margins
+% \usepackage[includefoot, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[includefoot, margin=2cm]{geometry}
+
+% Fonts -- handle LuaTeX vs LaTeX
+\usepackage[T1]{fontenc}
+
+\ifluatex
+  \usepackage{inputenc}
+  \usepackage{fontspec}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[full]{textcomp}
+\fi
+
+\usepackage[osf, sups, scaled=.96]{garamondx} % osf (or osfI) for text, not math
+\usepackage[scaled=.95]{cabin} % sans serif
+\usepackage[varqu, varl]{inconsolata} % sans serif typewriter
+\usepackage[garamondx, vvarbb]{newtxmath} % bb from STIX
+\usepackage[cal=boondoxo]{mathalfa} % mathcal
+
+\usepackage{fontawesome5}
+
+% Define the columns for the table that makes up each section
+\definecolor{lightgray}{gray}{0.8}
+\newcolumntype{L}{@{\hspace{-1em}}>{\raggedleft\bgroup}p{0.11\textwidth}<{\egroup}}
+\newcolumntype{R}{>{\noindent\setlength{\parindent}{1em}}p{0.85\textwidth}}
+\newcolumntype{S}{>{\setlength{\parindent}{1em}}p{0.74\textwidth}}
+\newcolumntype{P}{>{\noindent\setlength{\parindent}{0.5em}\hangindent=2\parindent}p{0.85\textwidth}}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+\setlength{\LTpre}{0pt}
+
+% Section title style
+\titleformat*{\section}{\vspace{0.75ex}\normalsize\bfseries}
+\titlespacing*{\section}{0pt}{*4}{*0.5}
+
+% Spacing
+\renewcommand{\arraystretch}{1.4}
+
+
+% Lua code for processing publications, working papers, etc.
+\ifluatex
+  \usepackage{luacode}
+  \begin{luacode*}
+    local dom = require "luaxml-domobject"
+    f = io.open("../xml/research.xml", 'r')
+    xmlfile = f:read('*all')
+    f:close()
+
+    local obj = dom.parse(xmlfile)
+    
+    months = {january = 1, february = 2, march = 03, april = 4, may = 5, june = 6, july = 7, august = 8, september = 9, october = 10, november = 11, december = 12}
+
+    -- Function for parsing a note with HTML formatting
+
+    function parse_note(str)
+      local ps = str:gsub("<notes>(.*)</notes>", "%1")
+      if ps:match("<%!%[CDATA%[") ~= nil then 
+        ps = ps:gsub("\n", "")
+        ps = ps:gsub("\r", "")
+        ps = ps:gsub("%s%s+", " ")
+        ps = ps:gsub("<%!%[CDATA%[", "")
+        ps = ps:gsub("%]%]>", "")
+        ps = ps:gsub("<span style=\"font%-weight: bold;\">", "\\textbf{")
+        ps = ps:gsub("<span style=\"font%-style:italic;\">", "\\emph{")
+        ps = ps:gsub("</span>", "}")
+        ps = ps:gsub("<strong>", "\\textbf{")
+        ps = ps:gsub("<em>", "\\emph{")
+        ps = ps:gsub("</strong>", "}")
+        ps = ps:gsub("</em>", "}")
+        ps = ps:gsub("{%s+", "{")
+        ps = ps:gsub("%s+}", "}")
+        ps = ps:gsub("%s\"", " ``")
+        ps = ps:gsub("(%a)\"", "%1''")
+        ps = ps:gsub("%s+$", "")
+      end
+      return ps
+    end
+
+    -- Helper: append a period only if the text does not already end with one
+    -- (ignores trailing closing braces, quotes and whitespace from the formatting)
+
+    function add_period(str)
+      if str:gsub("[}%s'`]*$", ""):sub(-1) == "." then
+        return str
+      else
+        return str .. "."
+      end
+    end
+
+    -- Function for printing publications (econ and other)
+
+    function publications(pub_type)
+      year = "a"
+      -- sort the entries
+      tab = obj:query_selector(pub_type)
+      table.sort(tab, function(a, b)
+          for _, el in ipairs(a:get_children()) do
+            if el:is_element() then
+              el_name = el:get_element_name()
+              el_text = el:get_text()
+              if el_name == "date" then
+                year_sort = string.match(el_text, "%d%d%d%d")
+                for word in el_text:gmatch("%w+") do
+                  if months[word:lower()] ~= nil then month_sort = months[word:lower()] end
+                end
+                dateA = year_sort + month_sort / 12
+              end
+            end
+          end
+          for _, el in ipairs(b:get_children()) do
+            if el:is_element() then
+              el_name = el:get_element_name()
+              el_text = el:get_text()
+              if el_name == "date" then
+                year_sort = string.match(el_text, "%d%d%d%d")
+                for word in el_text:gmatch("%w+") do
+                  if months[word:lower()] ~= nil then month_sort = months[word:lower()] end
+                end
+                dateB = year_sort + month_sort / 12
+              end
+            end
+          end
+          return dateA > dateB
+        end
+      )
+      for _, wp in ipairs(tab) do
+        wp_text = ""
+        for _, el in ipairs(wp:get_children()) do
+          if el:is_element() then
+            el_text = el:get_text()
+            el_text = el_text:gsub("&", "\\&")
+            el_name = el:get_element_name()
+
+            if el_name == "date" then
+              if string.match(el_text, "%d%d%d%d") ~= year 
+              then 
+                if string.match(el_text, "%d+") == nil 
+                  then year = el_text 
+                  else year = string.match(el_text, "%d+") 
+                end
+                wp_text = year .. " & " .. wp_text
+              else 
+                wp_text = "&" .. wp_text
+              end
+            elseif el_name == "title" then wp_text = wp_text .. "``" .. el_text
+            elseif el_name == "coauthors" then
+              if el_text ~= "" 
+                then wp_text = wp_text .. "'' (with " .. el_text .. "), " 
+                else wp_text = wp_text .. ",'' "
+              end
+              elseif el_name == "journal" and el_text ~= "" then wp_text = wp_text .. "\\textbf{\\emph{" .. el_text .. "}}"
+              elseif el_name == "vol_issue" and el_text ~= "" then wp_text = wp_text .. " " .. el_text .. ": "
+              elseif el_name == "pages" and el_text ~= "" then wp_text = wp_text .. el_text:gsub("(%d+)-(%d+)", "%1--%2")
+              elseif el_name == "notes" and el_text ~= "" then
+                el_text = obj:serialize(el)
+                el_text = parse_note(el_text)
+                wp_text = wp_text .. ". {\\small " .. el_text .. "}"
+                wp_text = wp_text:gsub("''%.", ".''")
+            end
+          end
+        end
+        print(wp_text)
+        tex.print(add_period(wp_text) .. " \\\\")
+      end
+    end
+
+    -- Function for printing working papers/work in progress (econ and other)
+
+    function work(work_type)
+      -- sort the entries
+      tab = obj:query_selector(work_type)
+      if work_type == "wp" then
+        table.sort(tab, function(a, b)
+            for _, el in ipairs(a:get_children()) do
+              if el:is_element() then
+                el_name = el:get_element_name()
+                el_text = el:get_text()
+                if el_name == "date" then
+                  year_sort = string.match(el_text, "%d%d%d%d")
+                  for word in el_text:gmatch("%w+") do
+                    if months[word:lower()] ~= nil then month_sort = months[word:lower()] end
+                  end
+                  dateA = year_sort + month_sort / 12
+                end
+              end
+            end
+            for _, el in ipairs(b:get_children()) do
+              if el:is_element() then
+                el_name = el:get_element_name()
+                el_text = el:get_text()
+                if el_name == "date" then
+                  year_sort = string.match(el_text, "%d%d%d%d")
+                  for word in el_text:gmatch("%w+") do
+                    if months[word:lower()] ~= nil then month_sort = months[word:lower()] end
+                  end
+                  dateB = year_sort + month_sort / 12
+                end
+              end
+            end
+            return dateA > dateB
+          end
+        )
+      end
+      for _, wp in ipairs(tab) do
+        wp_text = ""
+        for _, el in ipairs(wp:get_children()) do
+          if el:is_element() then
+            el_text = el:get_text()
+            el_name = el:get_element_name()
+
+            if el_name == "date" then
+              year = string.match(el_text, "%d%d%d%d")
+              if year == nil then wp_text = "\\hskip 1em & " .. wp_text
+              else 
+                for word in el_text:gmatch("%w+") do
+                  if months[word:lower()] ~= nil then month = months[word:lower()] end
+                end
+                if month < 10 then wp_text = year .. "/0" .. month .. " & " .. wp_text
+                else wp_text = year .. "/" .. month .. " & " .. wp_text 
+                end
+              end
+            elseif el_name == "title" then wp_text = wp_text .. "``" .. el_text
+            elseif el_name == "coauthors" then
+              if el_text ~= "" 
+                then wp_text = wp_text .. "'' (with " .. el_text .. ")." 
+                else wp_text = wp_text .. ".''"
+              end
+              elseif el_name == "notes" and el_text ~= "" then 
+                el_text = obj:serialize(el)
+                el_text = parse_note(el_text)
+                wp_text = wp_text .. " " .. add_period(el_text)
+                wp_text = wp_text:gsub("''%.", ".''")
+            end
+          end
+        end
+        print(wp_text)
+        tex.print(wp_text .. "\\\\")
+      end
+    end
+
+
+  \end{luacode*}
+\fi
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Current information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+  {\LARGE \textbf{Mircea Trandafir}}\\
+  \vspace{1ex}
+  {\normalsize Updated: \today}
+  \vspace{3ex}
+
+  \begin{minipage}[ht]{0.45\textwidth}
+    ROCKWOOL Foundation\\
+    Ny Kongensgade 6\\
+    DK 1472, Copenhagen\\
+    Denmark
+  \end{minipage}
+  \begin{minipage}[b][][t]{0.5\textwidth}
+    \raggedleft
+    % Phone: 
+    % +45 6550 3568 \; \faIcon{phone}\\
+    % Fax: 
+    % +45 6550 3237 \; \faIcon{fax}\\
+    % Email: 
+    \href{mailto:mt@rff.dk}{mt@rff.dk} \; \faIcon{envelope}\\
+    %Webpage: 
+    \href{https://www.mirceatrandafir.com}{www.mirceatrandafir.com} \; \faIcon{globe}
+  \end{minipage}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Academic Positions and Affiliations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Current Employment and Affiliations}
+
+\begin{longtable}{L!{\VRule}R}
+  2022-- & Senior Researcher, ROCKWOOL Foundation.    \\
+  2014-- & Research Fellow, IZA Network at LISER (IZA@LISER). \\
+\end{longtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Education
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Education}
+
+\begin{longtable}{L!{\VRule}R}
+  2009 & PhD in Economics, University of Maryland, College Park.                      \\
+  2002 & MA in Economics, Central European University, Budapest (Hungary).            \\
+  2000 & BA in Finance and Banking, Academy of Economic Studies, Bucharest (Romania). \\
+\end{longtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Other Employment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Previous Employment and Affiliations}
+
+\begin{longtable}{L!{\VRule}R}
+  2015--2022 & Associate Professor, Dept. of Business and Economics, Univ. of Southern Denmark. \\
+  2013--2015 & Assistant Professor, Dept. of Business and Economics, Univ. of Southern Denmark. \\
+  2009--2013 & Assistant Professor, Dept. of Economics, Université de Sherbrooke.               \\
+  2008--2009 & Consultant, Development Research Group, The World Bank.                          \\
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Research Interests
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Research Interests}
+
+\begin{longtable}{L!{\VRule}R}
+  \hskip 1em & Health Economics, Labor Economics, Applied Microeconometrics. \\
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Publications
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Publications}
+
+\ifluatex
+  \begin{longtable}{L!{\VRule}P}
+    \directlua{publications("pub")}
+  \end{longtable}
+\else
+  \noindent \textbf{\emph{\textcolor{red}{Remember to compile using Lua\LaTeX.}}}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Working Papers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newpage
+\section*{Working Papers}
+
+\ifluatex
+  \begin{longtable}{L!{\VRule}P}
+    \directlua{work("wp")}
+  \end{longtable}
+\else
+  \noindent \textbf{\emph{\textcolor{red}{Remember to compile using Lua\LaTeX.}}}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Work in Progress
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Work in Progress}
+
+\ifluatex
+  \begin{longtable}{L!{\VRule}P}
+    \directlua{work("wip")}
+  \end{longtable}
+\else
+  \noindent \textbf{\emph{\textcolor{red}{Remember to compile using Lua\LaTeX.}}}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Comments and Policy Briefs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Comments and Policy Briefs}
+
+\ifluatex
+  \begin{longtable}{L!{\VRule}P}
+    \directlua{publications("other_pub")}
+  \end{longtable}
+\else
+  \noindent \textbf{\emph{\textcolor{red}{Remember to compile using Lua\LaTeX.}}}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abandoned projects
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section*{Permanent Working Papers (RIP)}
+
+% \ifluatex
+%   \begin{longtable}{L!{\VRule}P}
+%     \directlua{work("rip")}
+%   \end{longtable}
+% \else
+%   \noindent \textbf{\emph{\textcolor{red}{Remember to compile using Lua\LaTeX.}}}
+% \fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Research grants
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Research Grants}
+
+\begin{longtable}{L!{\VRule}P}
+  2022--2025 & The Danish Council for Independent Research | Social Sciences, ``Employee health, risk aversion, and firm policies,'' DKK 1.9 mil. (co-PI, PI: Alexander Schandlbauer).                                \\
+  2015--2019 & The Danish Council for Independent Research | Social Sciences, ``Breast cancer treatment and socioeconomic outcomes of treated women and their families,'' DKK 4.8 mil. (co-PI, PI: N. Meltem Daysal). \\
+  2015--2018 & The Danish Council for Independent Research | Social Sciences, ``The impact of antidepressant use on socioeconomic outcomes of treated individuals and their families,'' DKK 1.4 mil. (PI).            \\
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Awards and Fellowships
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Awards and Fellowships}
+
+\begin{longtable}{L!{\VRule}P}
+  2009 & Best Comparative Article Presented at an APPAM Research Conference in 2008 for the paper ``The effect of same-sex marriage laws on different-sex marriage: Evidence from the Netherlands.''
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Invited Seminars and Conference Presentations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Invited Seminars and Conference Presentations}
+
+\begin{longtable}{L!{\VRule}P}
+  2026 & RFBerlin Health Conference, HEFUU Workshop (Uppsala), Workshop on the Economics of Health and Human Capital (Madrid), ERMAS \\
+  2025 & Vive.                                                                                                                                                                                                              \\
+  2024 & Center for Health and Wellbeing at Princeton University, NBER Summer Institute, RWI Essen.                                                                                                                         \\
+  2022 & ROCKWOOL Foundation, Health and Inequality Workshop at Copenhagen Business School, WOLFE Workshop at University of York.                                                                                           \\
+  2021 & Essen Health Conference, International Institute of Public Finance, European Association of Labor Economists, ERMAS Econometrics and Applied Microeconomics seminar.                                               \\
+  2019 & Workshop on Applied Microeconomics at ISER/University of Essex.                                                                                                                                                    \\
+  2018 & SOFI Stockholm, University of Mainz.                                                                                                                                                                               \\
+  2017 & iHEA (discussant).                                                                                                                                                                                                 \\
+  2016 & WZB Berlin, Health and Gender Workshop at the University of Essex.                                                                                                                                                 \\
+  2015 & Concordia University, 2nd SDU Applied Microeconomics Workshop, Joint SFI-Lund Workshop on Health Economics, Copenhagen Education Network.                                                                          \\
+  2014 & Lund University, University of Hamburg, ASHEcon (discussant), European Workshop on Econometrics and Health Economics, Annual Health Economics Conference.                                                          \\
+  2013 & Impaq International, Aarhus University, University of Southern Denmark, Canadian Economics Association, European Economic Association.                                                                             \\
+  2012 & Cornell University, ASHEcon (discussant).                                                                                                                                                                          \\
+  2011 & Concordia University, Tilburg University.                                                                                                                                                                          \\
+  2010 & McGill University, IZA/SOLE Transatlantic Meeting of Labor Economists, European Society for Population Economics, Paris School of Economics, University of Notre Dame.                                             \\
+  2009 & Université de Sherbrooke.                                                                                                                                                                                          \\
+  2008 & Tinbergen Institute, Technical University of Delft, Population Association of America, Society of Labor Economists (poster), Association for Public Policy Analysis and Management, Southern Economic Association. \\
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Research Visits
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Research Visits}
+
+\begin{longtable}{L!{\VRule}R}
+  Spring 2024 & Departmental Guest, Center for Health and Wellbeing, Princeton University. \\
+  2020/Feb   & University of California, Berkeley.                                        \\
+  Fall 2011  & Department of Econometrics and OR, Tilburg University.                     \\
+  Fall 2010  & Department of Econometrics and OR, Tilburg University.                     \\
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Referee
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section*{Referee}
+
+\begin{longtable}{L!{\VRule}R}
+  \hskip 1em & American Economic Review, AEJ: Economic Policy, Economic Journal, Journal of Economic Dynamics and Control, Journal of Health Economics, Journal of Human Resources, Journal of Labor Economics, JPE Microeconomics, Demography, Applied Economics, Canadian Journal of Development Studies, Canadian Public Policy, China Economic Review, Danish Journal of Economics, Health Economics, Journal of Development Studies,  Journal of Economic Surveys, Journal of Policy Analysis and Management, Journal of Population Economics, Labour Economics, Policy Studies Journal, Social Science \& Medicine, World Development. \\
+\end{longtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Teaching Experience
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Teaching Experience}
+
+\begin{longtable}{L!{\VRule}R}
+       & Undergraduate: \endgraf
+  \hangindent=2\parindent \emph{University of Southern Denmark:} Labor Economics, Research Methods in Social Sciences, Statistics (Economics, Business Economics, and Engineering programs). \endgraf
+  \hangindent=2\parindent \emph{Université de Sherbrooke:} Introduction to Econometrics, Cost-Benefit Analysis, Introduction to Microeconomics. \endgraf
+  \hangindent=2\parindent \emph{University of Maryland:} Financial Markets and the Macroeconomy, Money and Banking, Intermediate Microeconomics.                                                                                       \\
+       & Graduate: \endgraf
+  \hangindent=2\parindent \emph{University of Southern Denmark:} Applied Econometrics, Demography and Economics, Topics in Econometrics -- Big Data, Causation (European Doctoral School of Demography). \endgraf
+  \hangindent=2\parindent \emph{Université de Sherbrooke:} Labor Economics, Econometrics I. \endgraf
+  \hangindent=2\parindent \emph{Other:} Efficiency and Productivity Analysis Summer Programme (co-taught, University of Rome Tor Vergata)                                                                                              \\
+  2013 & D\hangindent=2\parindent ean's ``honor roll'' for teaching achievement (course evaluations above 3.7/4), Université de Sherbrooke: \emph{Introduction to econometrics} (undergraduate) and \emph{Labor economics} (graduate). \\
+  2012 & \hangindent=2\parindent Dean's ``honor roll'' for teaching achievement (course evaluations above 3.7/4), Université de Sherbrooke: \emph{Introduction to econometrics} (undergraduate) and \emph{Labor economics} (graduate). \\
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Advising
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Advising}
+
+\begin{longtable}{L!{\VRule}P}
+  \hskip 1em & Supervisor or secondary supervisor (University of Southern Denmark): Dieudonné Tamfutu Munsi (2024), Nis Vestergård Lydiksen (2021), Mikkel Hasse Pedersen (2019). \\
+             & University of Southern Denmark: 8 Master's students, 10 Bachelor's students.                                                                                       \\
+             & Université de Sherbrooke: 9 Master's students.                                                                                                                     \\
+             & Committee member/opponent: Derek Asuman (Lund University, 2023), Hanna Mülhrad (University of Gothenburg, 2017), Mesbah Sharaf (Concordia University, 2012).       \\
+\end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Professional Membership
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section*{Professional Membership}
+%
+% \begin{longtable}{L!{\VRule}R}
+%   & American Economic Association, American Society of Health Economists, Canadian Economics Association, European Economic Association. \\
+% \end{longtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Professional Service
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Conference and Workshop Organization}
+
+\begin{longtable}{L!{\VRule}P}
+  2017/08 & Medical Interventions and Socioeconomic Outcomes Workshop, Odense, Denmark.   \\
+  2016/08 & 25th European Workshop on Econometrics and Health Economics, Nyborg, Denmark. \\
+\end{longtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Department Service
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Department Service}
+
+\begin{longtable}{L!{\VRule}P}
+  \multicolumn{2}{l}{\hspace{-1em}\emph{University of Southern Denmark}}                                                                                            \\
+  2021--2022 & PhD Coordinator.                                                                                                                                     \\
+  2021       & Member of the assessment committee, Assistant professor position in economics and demography (Department of Business and Economics and CPop).        \\
+  2021       & Presentation of economics research to high school students at Kold College, Odense.                                                                  \\
+  2020--2022 & Member of the executive committee of the Business and Social Sciences unit of the Interdisciplinary Centre on Population Dynamics (\emph{CPop-SAM}). \\
+  2019--2022 & Department coordinator for the Scandinavian PhD Seminar Exchange program.                                                                            \\
+  2019--2022 & Co-organizer of the \emph{Applied Economics} seminar series.                                                                                         \\
+  2019--2022 & Member of the inter-departmental working group assessing the BA program in Law and Economics.                                                        \\
+  2017       & Presentation of economics research as part of the Academy of Talented Youth.                                                                         \\
+  2016--2022 & Member of the job placement committee.                                                                                                               \\
+  2016       & Presentation of economics research as part of the Tietgen Talent program.                                                                            \\
+  2014--2022 & Faculty-member data manager (University of Southern Denmark).                                                                                        \\
+  2015--2022 & Internal supervisor, Lecturer Training Programme.                                                                                                    \\
+  2014--2018 & Co-organizer of the \emph{Health and Applied Microeconomics (COHERE)} seminar series.                                                                \\
+  2014--2016 & Member of the recruiting committee.                                                                                                                  \\[0.5em]
+  \multicolumn{2}{l}{\hspace{-1em}\emph{Université de Sherbrooke}}                                                                                                  \\
+  2012--2013 & Organizer of the departmental seminar series.                                                                                                        \\
+  2010--2013 & Member of the admissions committee for the MSc program.                                                                                              \\
+  2009--2012 & Member of the recruiting committee.                                                                                                                  \\
+\end{longtable}
+
+
+\end{document}

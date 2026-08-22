@@ -1,0 +1,21 @@
+#!/bin/sh
+# Rebuild src/assets/CV/CV.pdf when its inputs (CV.tex or research.xml) are
+# being committed, and stage the result into the same commit. Aborts the
+# commit if the compile fails. Enabled by: git config core.hooksPath .githooks
+# (done automatically by `npm ci` / `npm install` via the "prepare" script).
+
+CV_DIR="src/assets/CV"
+PATH="$PATH:/Library/TeX/texbin"   # GUI git clients may not have TeX on PATH
+
+if git diff --cached --quiet -- "$CV_DIR/CV.tex" src/assets/xml/research.xml; then
+  exit 0
+fi
+
+echo "pre-commit: CV inputs changed, compiling CV.tex with latexmk…"
+if ! ( cd "$CV_DIR" && latexmk -lualatex -interaction=nonstopmode -halt-on-error -outdir=build CV.tex >/dev/null 2>&1 ); then
+  echo "pre-commit: CV compile failed — see $CV_DIR/build/CV.log. Commit aborted." >&2
+  exit 1
+fi
+
+cp "$CV_DIR/build/CV.pdf" "$CV_DIR/CV.pdf" && git add "$CV_DIR/CV.pdf"
+echo "pre-commit: CV.pdf rebuilt and staged."

@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "eleventy --serve",
-    "build": "eleventy"
+    "build": "eleventy",
+    "prepare": "git config core.hooksPath .githooks",
+    "cv": "cd src/assets/CV && latexmk -lualatex -interaction=nonstopmode -halt-on-error -outdir=build CV.tex && cp build/CV.pdf CV.pdf"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

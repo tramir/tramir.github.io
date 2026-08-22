@@ -11,7 +11,7 @@ Static site built with [Eleventy](https://www.11ty.dev/) 3 (Nunjucks templates),
 - **Papers**: edit `src/assets/xml/research.xml`. The research page lists and the featured items on the home page are generated from it at build time by `src/_data/research.js`; field conventions (dates, `<featured>`, `<media>`, CDATA for HTML in notes/abstracts, file-name resolution for `<doc>`/`<replication>`) are documented at the top of that file. PDFs go in `src/assets/papers/`.
 - **Paper links**: `<doc>` (Paper), `<appendix>` (Appendix), `<replication>` (Replication package), `<doi>` (Journal version, bare DOI or full URL). Each renders a pill under the abstract when present.
 - **Media coverage**: fill the `<media>` element of an entry with a comma-separated list of outlets (no links). Empty tags render nothing.
-- **CV**: replace `src/assets/CV/CV.pdf` (also served at `/docs/CV.pdf` for old links).
+- **CV**: source is `src/assets/CV/CV.tex` (LuaLaTeX; reads `research.xml` via luacode). A pre-commit hook (`.githooks/pre-commit`, enabled by `npm ci`/`npm install` through the `prepare` script, or `git config core.hooksPath .githooks`) recompiles with `latexmk -lualatex` into `src/assets/CV/build/` (gitignored) and stages `CV.pdf` whenever `CV.tex` or `research.xml` is committed; a failed compile aborts the commit. `npm run cv` compiles manually. The `.tex` and build files are excluded from the site; the PDF is also served at `/docs/CV.pdf` for old links.
 - **Bio/contact**: `src/index.njk`. Header, footer links, meta tags: `src/_includes/layouts/base.njk`.
 - **Footer "Last updated"**: derived from the last git commit touching `research.xml` or `CV.pdf` (`CONTENT_FILES` in `.eleventy.js`); the deploy checkout fetches full history for this.
 
