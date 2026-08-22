@@ -8,4 +8,4 @@ The site lists working papers, work in progress, and publications, with abstract
 
 **https://www.mirceatrandafir.com**
 
-Built with [Eleventy](https://www.11ty.dev/) and hosted on GitHub Pages. Maintenance notes are in `NOTES.md`.
+Built with [Eleventy](https://www.11ty.dev/) and hosted on GitHub Pages.
