@@ -18,4 +18,5 @@ if ! ( cd "$CV_DIR" && latexmk -lualatex -interaction=nonstopmode -halt-on-error
 fi
 
 cp "$CV_DIR/build/CV.pdf" "$CV_DIR/CV.pdf" && git add "$CV_DIR/CV.pdf"
+rm -rf "$CV_DIR/build"   # keep the log only when the compile fails
 echo "pre-commit: CV.pdf rebuilt and staged."

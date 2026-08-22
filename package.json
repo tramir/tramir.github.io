@@ -6,7 +6,7 @@
     "start": "eleventy --serve",
     "build": "eleventy",
     "prepare": "git config core.hooksPath .githooks",
-    "cv": "cd src/assets/CV && latexmk -lualatex -interaction=nonstopmode -halt-on-error -outdir=build CV.tex && cp build/CV.pdf CV.pdf"
+    "cv": "cd src/assets/CV && latexmk -lualatex -interaction=nonstopmode -halt-on-error -outdir=build CV.tex && cp build/CV.pdf CV.pdf && rm -rf build"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
