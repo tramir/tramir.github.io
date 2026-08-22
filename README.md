@@ -1,17 +1,11 @@
-# tramir.github.io
+# mirceatrandafir.com
 
-Personal site, built with [Eleventy](https://www.11ty.dev/) and deployed to GitHub Pages on push to `main`.
+Personal website of **Mircea Trandafir**, Senior Researcher at the [ROCKWOOL Foundation](https://en.rockwoolfonden.dk/) in Copenhagen and Research Fellow at [IZA](https://www.iza.org/).
 
-## Editing
+Applied microeconomics, especially labor and health economics: the health and non-health benefits of medical treatments, and the link between physical and mental health and the labor market.
 
-- **Papers**: edit `src/assets/xml/research.xml`. Lists on the research page and the featured items on the home page are generated from it at build time (`src/_data/research.js`). Field conventions are documented at the top of that file. PDFs go in `src/assets/papers/`.
-- **CV**: replace `src/assets/CV/CV.pdf`.
-- **Bio/contact**: `src/index.njk`. Layout and footer links: `src/_includes/layouts/base.njk`.
+The site lists working papers, work in progress, and publications, with abstracts and PDFs, and a [CV](https://www.mirceatrandafir.com/assets/CV/CV.pdf).
 
-## Local preview
+**https://www.mirceatrandafir.com**
 
-```sh
-npm ci
-npm start        # http://localhost:8080, rebuilds on change
-npm run build    # writes _site/
-```
+Built with [Eleventy](https://www.11ty.dev/) and hosted on GitHub Pages. Maintenance notes are in `NOTES.md`.
