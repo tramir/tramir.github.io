@@ -7,7 +7,8 @@
  *                        (wp, wip, pubs, other_pubs)
  *   research.featured  — { pubs: [...], wp: [...] } for the home page
  *
- * Each item: { id, url, citation, short, abstract, doc, replication, doi, featured }
+ * Each item: { id, url, citation, short, abstract, doc, appendix, replication,
+ *              doiUrl, featured }
  *   url      — "/research/#<id>" (the research page opens that abstract)
  *   citation — full HTML line for the research page (title bold, journal
  *              bold-italic, "vol(issue), pages, Month Year", notes)
@@ -22,8 +23,9 @@
  * - <date> accepts "YYYY", "YYYY-MM", "YYYY-MM-DD", "Month YYYY", or
  *   "D Month YYYY". Year-only and day-level dates display as written.
  * - Any HTML inside <notes> or <abstract> must be wrapped in CDATA.
- * - <doc> is a file name in src/assets/papers/ (or an absolute URL);
- *   <replication> is a file name in src/assets/replication/ (or a URL).
+ * - <doc> and <appendix> are file names in src/assets/papers/ (or absolute
+ *   URLs); <replication> is a file name in src/assets/replication/ (or a URL);
+ *   <doi> is a bare DOI (linked via doi.org) or a full URL.
  * - <featured/> or <featured>true</featured> marks a <pub>/<wp> for the
  *   home page. Featured working papers are capped at MAX_FEATURED_WP.
  */
@@ -53,6 +55,12 @@ function resolvePath(p, type) {
   if (type === "doc") return "/assets/papers/" + p;
   if (type === "replication") return "/assets/replication/" + p;
   return p;
+}
+
+function doiUrl(d) {
+  if (!d) return "";
+  if (d.startsWith("http")) return d;
+  return "https://doi.org/" + d.replace(/^doi:\s*/i, "");
 }
 
 // ---------- Dates ----------
@@ -202,8 +210,9 @@ function normalize(node, kind) {
     abstract: text(node.abstract),
     media: text(node.media),
     doc: resolvePath(text(node.doc), "doc"),
+    appendix: resolvePath(text(node.appendix), "doc"),
     replication: resolvePath(text(node.replication), "replication"),
-    doi: text(node.doi),
+    doiUrl: doiUrl(text(node.doi)),
     featured: isFeatured(node)
   };
   it.url = it.id ? "/research/#" + it.id : "";

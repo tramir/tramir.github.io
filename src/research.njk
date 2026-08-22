@@ -26,25 +26,34 @@ permalink: /research/index.html
         <div class="abstract-wrap">
           <div class="abstract-card">
             <div class="abstract-body">{{ item.abstract | safe }}</div>
-            {% if item.doc or item.replication %}
+            {% if item.doc or item.appendix or item.replication or item.doiUrl %}
             <div class="abs-actions">
               {% if item.doc %}
-              <a class="btn btn-abs btn-doc" href="{{ item.doc }}" target="_blank" rel="noopener">
-                <svg class="icon-feather" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <line x1="9" y1="15" x2="15" y2="15"/>
-                  <line x1="9" y1="11" x2="11.5" y2="11"/>
-                  <line x1="13" y1="11" x2="15" y2="11"/>
+              <a class="btn btn-abs" href="{{ item.doc }}" target="_blank" rel="noopener">
+                <svg class="icon-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="11" x2="11.5" y2="11"/><line x1="13" y1="11" x2="15" y2="11"/>
                 </svg><span>Paper</span>
               </a>
               {% endif %}
+              {% if item.appendix %}
+              <a class="btn btn-abs" href="{{ item.appendix }}" target="_blank" rel="noopener">
+                <svg class="icon-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
+                </svg><span>Appendix</span>
+              </a>
+              {% endif %}
               {% if item.replication %}
-              <a class="btn btn-abs btn-rep" href="{{ item.replication }}" target="_blank" rel="noopener">
-                <svg class="icon-feather" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
+              <a class="btn btn-abs" href="{{ item.replication }}" target="_blank" rel="noopener">
+                <svg class="icon-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
                 </svg><span>Replication package</span>
+              </a>
+              {% endif %}
+              {% if item.doiUrl %}
+              <a class="btn btn-abs" href="{{ item.doiUrl }}" target="_blank" rel="noopener">
+                <svg class="icon-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                </svg><span>Journal version</span>
               </a>
               {% endif %}
             </div>

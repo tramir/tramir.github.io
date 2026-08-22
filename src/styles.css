@@ -654,8 +654,8 @@ details:not([open]) .abstract-card .abs-actions {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: clamp(0.4em, 6vw, 8em);
-  padding: .5rem .6rem .7rem;
+  gap: .6em .9em;
+  padding: .4rem .6rem .75rem;
   flex-wrap: wrap;
 }
 
@@ -692,8 +692,8 @@ details:not([open]) .abstract-card .abs-actions {
 }
 
 .abs-actions .btn {
-  min-width: 12.5em;
-  justify-content: center;
+  padding: .32rem .85rem;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
