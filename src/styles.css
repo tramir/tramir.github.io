@@ -891,14 +891,38 @@ details:not([open]) .abstract-card .abs-actions {
     --chevron: transparent;
   }
 
-  .site-header,
   .site-footer,
   .section-nav,
   .skip-link,
+  .nav-toggle,
+  .site-header .main-nav,
   .abs-actions,
   .chev2,
   .paper.no-abstract .paper-toggle::after {
     display: none !important;
+  }
+
+  /* Header printed once, statically: name left, site URL right */
+  .site-header {
+    position: static;
+    height: auto;
+    background: none;
+    border-bottom: 1px solid var(--divider);
+    padding: 0 0 .4rem;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .site-header .brand {
+    color: #000;
+    font-size: 1.3rem;
+  }
+
+  .site-header__inner::after {
+    content: "www.mirceatrandafir.com";
+    font-size: .8rem;
+    letter-spacing: .05em;
+    color: #666;
   }
 
   html, body {
@@ -910,7 +934,7 @@ details:not([open]) .abstract-card .abs-actions {
   }
 
   .container {
-    margin: 0 auto;
+    margin: 1rem auto 0;
   }
 
   /* Entrance animation does not run when printing: show content directly */
