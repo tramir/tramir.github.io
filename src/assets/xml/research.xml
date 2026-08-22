@@ -16,6 +16,7 @@
     <abstract><![CDATA[
       We investigate the effects of early-life medical treatments on the treated children and their families. We use a regression discontinuity design that exploits changes in medical treatments across the very low birth weight (VLBW) cutoff. Using administrative data from Denmark, we establish that VLBW children have better health and higher test scores. We find that these benefits spill over to other family members: mothers enjoy better mental health, and siblings have higher test scores. Maternal mental health improvements seem to be driven by better focal child health and sibling spillovers by improved interactions within the family and parental compensating behavior.
     ]]></abstract>
+    <media></media>
     <doc>BW_Spillovers.pdf</doc>
     <doi>10.1162/rest_a_00982</doi>
     <replication>https://doi.org/10.7910/DVN/LWVAKX</replication>
@@ -34,6 +35,7 @@
     <abstract><![CDATA[
       We investigate the effects of perinatal medical treatments on low-income newborns who are classified as low-risk. A policy rule in The Netherlands states that low-risk deliveries before week 37 should be supervised by physicians and later deliveries only by midwives with no physician present. This creates large discontinuities in the probability of receiving medical interventions only physicians are allowed to perform. Using a regression discontinuity design, we find that babies born slightly before the week-37 cutoff are significantly less likely to die than babies born slightly later. Our data suggest that physician supervision of birth reduces the likelihood of adverse events such as fetal distress or emergency C-section. Our results indicate that low-income women benefit from receiving a higher level of medical care even if no explicit risk factors have been recognized, pointing to challenges in identifying all high-risk pregnancies. "Back-of-the-envelope" calculations suggest this additional care is highly cost-effective.
     ]]></abstract>
+    <media></media>
     <doc>GYN_Midwife.pdf</doc>
     <doi>10.1016/j.jhealeco.2019.01.006</doi>
   </pub>
@@ -57,6 +59,7 @@
       "better" jobs (in the service industry or government), suggesting a reduction in the mismatch
       between the quality of high-skill labor demanded and supplied.
     ]]></abstract>
+    <media></media>
     <doc>PDEF_Senegal.pdf</doc>
     <doi>10.1016/j.worlddev.2015.05.007</doi>
   </pub>
@@ -73,6 +76,7 @@
     <abstract><![CDATA[
       Many developed countries have recently experienced sharp increases in home birth rates. This paper investigates the impact of home births on the health of low-risk newborns using data from the Netherlands, the only developed country where home births are widespread. To account for endogeneity in location of birth, we exploit the exogenous variation in distance from a mother's residence to the closest hospital. We find that giving birth in a hospital leads to substantial reductions in newborn mortality. We provide suggestive evidence that proximity to medical technologies may be an important channel contributing to these health gains.
     ]]></abstract>
+    <media></media>
     <doc>NL_Homebirths.pdf</doc>
     <doi>10.1257/app.20120359</doi>
     <featured>true</featured>
@@ -98,6 +102,7 @@
       synthetic control method. In addition, the country-by-country case studies provide evidence of
       homogeneity of the estimated effects.
     ]]></abstract>
+    <media></media>
     <doc>SSM_Comparative_Analysis.pdf</doc>
     <doi>10.1007/s13524-014-0361-2</doi>
   </pub>
@@ -126,6 +131,7 @@
       ethnicity) marrying less after passage of both laws and potentially more-conservative individuals
       marrying more after passage of each law.
     ]]></abstract>
+    <media></media>
     <doc>Marriage_Netherlands.pdf</doc>
     <doi>10.1007/s13524-013-0248-7</doi>
   </pub>
@@ -148,6 +154,7 @@
       documented a substantial employment drop after a breast cancer diagnosis.  Our results imply that radiation 
       therapy can reduce this effect by 70%.
     ]]></abstract>
+    <media></media>
     <doc>Radiotherapy.pdf</doc>
     <doi>10.1257/pol.20240133</doi>
     <replication>https://doi.org/10.3886/E224401V1</replication>
@@ -174,6 +181,7 @@
       educated mothers and those in less family-friendly jobs. Our results highlight postpartum depression as a meaningful and unequal 
       contributor to the motherhood penalty.
     ]]></abstract>
+    <media></media>
     <doc>Postpartum_Depression_Penalty.pdf</doc>
     <featured>true</featured>
   </wp>
@@ -207,6 +215,7 @@
       under-treatment in these groups. Our findings underscore the potential of early mental health treatment 
       to improve longer term economic outcomes and reducing inequality.
     ]]></abstract>
+    <media></media>
     <doc>AD_children.pdf</doc>
     <featured>true</featured>
   </wp>
@@ -231,6 +240,7 @@
       to predict positive mammography results leads to policies with weaker health effects and higher rates of 
       overdiagnosis than a model trained to predict invasive tumors.
     ]]></abstract>
+    <media></media>
     <doc>Screening.pdf</doc>
   </wp>
 
@@ -256,6 +266,7 @@
       propose that all but the largest firms may benefit from subsidizing vaccination programs for 
       their employees.
     ]]></abstract>
+    <media></media>
     <doc>Flu.pdf</doc>
     <featured>true</featured>
   </wp>
@@ -281,6 +292,7 @@
       expected number of years of schooling. We provide suggestive evidence that the decline in enrollment
       is due to higher drop-out rates, mostly among students who are old-for-grade.
     ]]></abstract>
+    <media></media>
     <url></url>
   </wp>
 
@@ -304,6 +316,7 @@
       data, we document an increase in teen fertility as a result of this policy. Although more imprecise,
       our results also suggest that the effects are larger in urban areas.
     ]]></abstract>
+    <media></media>
     <url></url>
   </wp>
 
@@ -327,6 +340,7 @@
       determinants of the intergenerational transmission of poverty and inequality in the context of a
       developing country.
     ]]></abstract>
+    <media></media>
     <url></url>
   </wp>
 
@@ -339,6 +353,7 @@
     <date></date>
     <notes></notes>
     <abstract><![CDATA[]]></abstract>
+    <media></media>
   </wip>
 
   <wip>
@@ -348,6 +363,7 @@
     <date></date>
     <notes></notes>
     <abstract><![CDATA[]]></abstract>
+    <media></media>
   </wip>
 
   <wip>
@@ -357,6 +373,7 @@
     <date></date>
     <notes></notes>
     <abstract><![CDATA[]]></abstract>
+    <media></media>
   </wip>
 
   <wip>
@@ -366,6 +383,7 @@
     <date></date>
     <notes></notes>
     <abstract><![CDATA[]]></abstract>
+    <media></media>
   </wip>
 
   <wip>
@@ -375,6 +393,7 @@
     <date></date>
     <notes></notes>
     <abstract><![CDATA[]]></abstract>
+    <media></media>
   </wip>
 
   <!-- <wip>
@@ -385,6 +404,7 @@
     <notes></notes>
     <abstract><![CDATA[
     ]]></abstract>
+    <media></media>
     <link></link>
   </wip> -->
 
@@ -411,6 +431,7 @@
       question then is whether medical care aimed at improving childhood health may alleviate or eliminate
       these negative long-run consequences
     ]]></abstract>
+    <media></media>
     <doc>DJOF.pdf</doc>
     <doi>https://www.djoef-forlag.dk/openaccess/samf/samfdocs/2023/2023_2/Samf_4_2_2023.pdf</doi>
   </other_pub>
@@ -429,6 +450,7 @@
       the effect of a hospital birth on low-risk newborn mortality in the context of the home birth
       debate.
     ]]></abstract>
+    <media></media>
     <doc>BJOG_letter.pdf</doc>
     <doi>https://dx.doi.org/10.1111/1471-0528.14250</doi>
   </other_pub>
@@ -445,6 +467,7 @@
     <abstract><![CDATA[
       A summary of our findings on the effects of a hospital birth on low-risk newborn mortality. (In Dutch)
     ]]></abstract>
+    <media></media>
     <doc>Medisch_Contact.pdf</doc>
     <doi>https://goo.gl/TV3WiR</doi>
   </other_pub>
@@ -463,6 +486,7 @@
       is not proof of absence of change and suggests using equivalence tests to verify that the
       same-sex marriage law had no effect on the different-sex marriage rate.
     ]]></abstract>
+    <media></media>
     <doc>Demography_Reply.pdf</doc>
     <doi>http://dx.doi.org/10.1007/s13524-014-0348-z</doi>
   </other_pub>
@@ -490,6 +514,7 @@
       providers of financial services, which has enabled the success of mobile payments, could also
       further outreach.
     ]]></abstract>
+    <media></media>
     <doc>Kenya_Banking_Sector.pdf</doc>
     <doi>http://dx.doi.org/10.1596/1813-9450-5442</doi>
   </other_pub>

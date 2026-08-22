@@ -17,7 +17,10 @@ permalink: /research/index.html
       {% if item.abstract %}
       <details class="paper" id="{{ item.id }}">
         <summary class="paper-toggle" role="button" aria-expanded="false">
-          <span class="paper-title-inline">{{ item.citation | safe }}</span>
+          <div class="paper-main">
+            <span class="paper-title-inline">{{ item.citation | safe }}</span>
+            {% if item.media %}<div class="paper-media"><span class="paper-media__label">In the media</span>{{ item.media | safe }}</div>{% endif %}
+          </div>
           <span class="chev2" aria-hidden="true"></span>
         </summary>
         <div class="abstract-wrap">
@@ -52,7 +55,10 @@ permalink: /research/index.html
       {% else %}
       <div class="paper no-abstract" id="{{ item.id }}">
         <div class="paper-toggle">
-          <span class="paper-title-inline">{{ item.citation | safe }}</span>
+          <div class="paper-main">
+            <span class="paper-title-inline">{{ item.citation | safe }}</span>
+            {% if item.media %}<div class="paper-media"><span class="paper-media__label">In the media</span>{{ item.media | safe }}</div>{% endif %}
+          </div>
         </div>
       </div>
       {% endif %}

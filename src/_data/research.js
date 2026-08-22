@@ -13,6 +13,8 @@
  *              bold-italic, "vol(issue), pages, Month Year", notes)
  *   short    — compact HTML line for the home page (year only, title linked)
  *   abstract — HTML (from CDATA); empty string if none
+ *   media    — free text listing media coverage (outlet names, no links),
+ *              shown under the citation; empty string if none
  *
  * Conventions (same as the previous client-side renderer):
  * - Each section is sorted by <date> descending; undated entries go last;
@@ -198,6 +200,7 @@ function normalize(node, kind) {
     date: text(node.date),
     notes: text(node.notes),
     abstract: text(node.abstract),
+    media: text(node.media),
     doc: resolvePath(text(node.doc), "doc"),
     replication: resolvePath(text(node.replication), "replication"),
     doi: text(node.doi),
