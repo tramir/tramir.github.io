@@ -14,7 +14,13 @@
     <pages>1-16</pages>
     <notes></notes>
     <abstract><![CDATA[
-      We investigate the effects of early-life medical treatments on the treated children and their families. We use a regression discontinuity design that exploits changes in medical treatments across the very low birth weight (VLBW) cutoff. Using administrative data from Denmark, we establish that VLBW children have better health and higher test scores. We find that these benefits spill over to other family members: mothers enjoy better mental health, and siblings have higher test scores. Maternal mental health improvements seem to be driven by better focal child health and sibling spillovers by improved interactions within the family and parental compensating behavior.
+      We investigate the effects of early-life medical treatments on the treated children and their families. We use a 
+      regression discontinuity design that exploits changes in medical treatments across the very low birth weight 
+      (VLBW) cutoff. Using administrative data from Denmark, we establish that VLBW children have better health and 
+      higher test scores. We find that these benefits spill over to other family members: mothers enjoy better mental 
+      health, and siblings have higher test scores. Maternal mental health improvements seem to be driven by better 
+      focal child health and sibling spillovers by improved interactions within the family and parental compensating 
+      behavior.
     ]]></abstract>
     <media></media>
     <doc>BW_Spillovers.pdf</doc>
@@ -34,7 +40,16 @@
     <pages>55-67</pages>
     <notes></notes>
     <abstract><![CDATA[
-      We investigate the effects of perinatal medical treatments on low-income newborns who are classified as low-risk. A policy rule in The Netherlands states that low-risk deliveries before week 37 should be supervised by physicians and later deliveries only by midwives with no physician present. This creates large discontinuities in the probability of receiving medical interventions only physicians are allowed to perform. Using a regression discontinuity design, we find that babies born slightly before the week-37 cutoff are significantly less likely to die than babies born slightly later. Our data suggest that physician supervision of birth reduces the likelihood of adverse events such as fetal distress or emergency C-section. Our results indicate that low-income women benefit from receiving a higher level of medical care even if no explicit risk factors have been recognized, pointing to challenges in identifying all high-risk pregnancies. "Back-of-the-envelope" calculations suggest this additional care is highly cost-effective.
+      We investigate the effects of perinatal medical treatments on low-income newborns who are classified as 
+      low-risk. A policy rule in The Netherlands states that low-risk deliveries before week 37 should be 
+      supervised by physicians and later deliveries only by midwives with no physician present. This creates 
+      large discontinuities in the probability of receiving medical interventions only physicians are allowed 
+      to perform. Using a regression discontinuity design, we find that babies born slightly before the week-37 
+      cutoff are significantly less likely to die than babies born slightly later. Our data suggest that physician 
+      supervision of birth reduces the likelihood of adverse events such as fetal distress or emergency C-section. 
+      Our results indicate that low-income women benefit from receiving a higher level of medical care even if no 
+      explicit risk factors have been recognized, pointing to challenges in identifying all high-risk pregnancies. 
+      "Back-of-the-envelope" calculations suggest this additional care is highly cost-effective.
     ]]></abstract>
     <media></media>
     <doc>GYN_Midwife.pdf</doc>
@@ -171,7 +186,7 @@
     <date>July 2026</date>
     <notes><![CDATA[
       <span style="font-weight: bold;">
-        Submitted.
+        Conditionally accepted at <em>American Economic Review: Insights</em>.
       </span>
       Also available as NBER Working Paper No. 35475.
     ]]></notes>
@@ -180,7 +195,7 @@
       administrative data and a matched stacked difference-in-differences design. We compare patients who
       initiate GLP-1 treatment during the first two years of Semaglutide availability to observably similar
       patients who initiate four years later. We find that GLP-1 treatment reduces long-term sickness leave by
-      17.3%. We estimate total fiscal benefits of GLP-1 initiation of approximately 1.3–1.5% of annual labor
+      17.3%. We estimate total fiscal benefits of GLP-1 initiation of approximately 1.3-1.5% of annual labor
       income per employed individual. We do not detect statistically significant or economically meaningful
       impacts on income, labor force participation, or employment over four years.
     ]]></abstract>
