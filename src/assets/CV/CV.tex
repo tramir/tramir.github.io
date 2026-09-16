@@ -87,6 +87,7 @@
 
     function parse_note(str)
       local ps = str:gsub("<notes>(.*)</notes>", "%1")
+      ps = ps:gsub("<status>(.*)</status>", "%1")
       if ps:match("<%!%[CDATA%[") ~= nil then 
         ps = ps:gsub("\n", "")
         ps = ps:gsub("\r", "")
@@ -258,6 +259,11 @@
                 then wp_text = wp_text .. "'' (with " .. el_text .. ")." 
                 else wp_text = wp_text .. ".''"
               end
+              elseif el_name == "status" and el_text ~= "" then
+                el_text = obj:serialize(el)
+                el_text = parse_note(el_text)
+                wp_text = wp_text .. " \\textbf{" .. add_period(el_text) .. "}"
+                wp_text = wp_text:gsub("''%.", ".''")
               elseif el_name == "notes" and el_text ~= "" then 
                 el_text = obj:serialize(el)
                 el_text = parse_note(el_text)

@@ -184,12 +184,8 @@
     <title>The labor market impacts of GLP-1s</title>
     <coauthors>N. Meltem Daysal, Camille Fredrickson, Ida Lykke Kristiansen, and Jonathan Zhang</coauthors>
     <date>July 2026</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Conditionally accepted at <em>American Economic Review: Insights</em>.
-      </span>
-      Also available as NBER Working Paper No. 35475.
-    ]]></notes>
+    <status><![CDATA[Conditionally accepted at <em>American Economic Review: Insights</em>.]]></status>
+    <notes>Also available as NBER Working Paper No. 35475.</notes>
     <abstract><![CDATA[
       We estimate the causal impacts of GLP-1 treatment on labor market outcomes using linked Danish
       administrative data and a matched stacked difference-in-differences design. We compare patients who
@@ -209,11 +205,8 @@
     <title>Postpartum depression and the motherhood penalty</title>
     <coauthors>Sonia Bhalotra, N. Meltem Daysal, Louis Fréget, Jonas Cuzulan Hirani, Priyama Majumdar, Miriam Wüst, and Tom Zohar</coauthors>
     <date>January 2026</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Revisions requested by <em>Review of Economics and Statistics</em>.
-      </span>
-    ]]></notes>
+    <status><![CDATA[Revisions requested by <em>Review of Economics and Statistics</em>.]]></status>
+    <notes></notes>
     <abstract><![CDATA[
       Using Danish administrative data linked to two independent, validated postpartum depression screenings, we study how postpartum mental 
       health shocks shape women's labor market trajectories. Event-study estimates show no pre-birth differences in trends between depressed 
@@ -232,12 +225,8 @@
     <title>Antidepressant treatment in childhood</title>
     <coauthors>Sonia Bhalotra and N. Meltem Daysal</coauthors>
     <date>July 2025</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Currently revising.
-      </span>
-      An earlier version circulated under the title "Teen antidepressant use and academic achievement"
-    ]]></notes>
+    <status><![CDATA[Currently revising.]]></status>
+    <notes><![CDATA[An earlier version circulated under the title "Teen antidepressant use and academic achievement"]]></notes>
     <abstract><![CDATA[
       Mental health disorders tend to emerge in childhood, with half starting by age 14. This makes early 
       intervention important, but treatment rates are low, and antidepressant treatment for children remains
@@ -266,11 +255,8 @@
     <title>An economic approach to machine learning in health policy</title>
     <coauthors>N. Meltem Daysal, Sendhil Mullainathan, Ziad Obermeyer, and Suproteem K. Sarkar</coauthors>
     <date>January 2024</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Currently revising.
-      </span>
-    ]]></notes>
+    <status><![CDATA[Currently revising.]]></status>
+    <notes></notes>
     <abstract><![CDATA[
       We consider the health effects of "precision" screening policies for cancer guided by algorithms. We 
       show that machine learning models that predict breast cancer from health claims data outperform models 
@@ -290,13 +276,8 @@
     <title>Employee health and firm performance</title>
     <coauthors>Daniel A. Rettl and Alexander Schandlbauer</coauthors>
     <date>April 2026</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Revised and resubmitted at <em>Journal of Financial and Quantitative Analysis</em>.
-      </span>
-      An earlier version is available as IZA Discussion Paper No. 15147
-    ]]>
-    </notes>
+    <status><![CDATA[Revised and resubmitted at <em>Journal of Financial and Quantitative Analysis</em>.]]></status>
+    <notes>An earlier version is available as IZA Discussion Paper No. 15147</notes>
     <abstract><![CDATA[
       Using administrative data on the universe of firms in Denmark, we find that even temporary
       and small health shocks to employee health like seasonal influenza can significantly reduce firm
@@ -317,11 +298,8 @@
     <title>Language of instruction and educational outcomes: Evidence from an education policy in Rwanda</title>
     <coauthors>Dieudonné Tamfutu Munsi</coauthors>
     <date>October 2021</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Currently revising.
-      </span>
-    ]]></notes>
+    <status><![CDATA[Currently revising.]]></status>
+    <notes></notes>
     <abstract><![CDATA[
       We investigate the effects on educational outcomes of a sudden change in the language of instruction 
       in Rwanda from one non-native language (French) to another (English). This change, enacted in 2008, 
@@ -342,11 +320,8 @@
     <title>The effects of education policy on teen pregnancy</title>
     <coauthors>Dieudonné Tamfutu Munsi</coauthors>
     <date>October 2021</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Currently revising.
-      </span>
-    ]]></notes>
+    <status><![CDATA[Currently revising.]]></status>
+    <notes></notes>
     <abstract><![CDATA[
       More education is generally associated with delayed marriage and fertility. We investigate the causal 
       link between a policy that plausibly reduced educational attainment in Rwanda and teen fertility. In
@@ -366,11 +341,8 @@
     <title>Education policies and the intergenerational transmission of health: Evidence from Rwanda</title>
     <coauthors>Dieudonné Tamfutu Munsi</coauthors>
     <date>October 2021</date>
-    <notes><![CDATA[
-      <span style="font-weight: bold;">
-        Currently revising.
-      </span>
-    ]]></notes>
+    <status><![CDATA[Currently revising.]]></status>
+    <notes></notes>
     <abstract><![CDATA[
       While better health has been shown to lead to more education, both in the developed and in the
       developing world, the causal link from education to health is less clear. In this paper, we examine

@@ -319,6 +319,11 @@ body {
   color: var(--heading);
 }
 
+.featured-status {
+  font-weight: 600;
+  color: var(--text);
+}
+
 .featured-item a {
   color: inherit;
   text-decoration: none;

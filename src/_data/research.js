@@ -7,13 +7,17 @@
  *                        (wp, wip, pubs, other_pubs)
  *   research.featured  — { pubs: [...], wp: [...] } for the home page
  *
- * Each item: { id, url, citation, short, abstract, doc, appendix, replication,
- *              doiUrl, featured }
+ * Each item: { id, url, citation, short, abstract, status, doc, appendix,
+ *              replication, doiUrl, featured }
  *   url      — "/research/#<id>" (the research page opens that abstract)
  *   citation — full HTML line for the research page (title bold, journal
  *              bold-italic, "vol(issue), pages, Month Year", notes)
  *   short    — compact HTML line for the home page (year only, title linked)
  *   abstract — HTML (from CDATA); empty string if none
+ *   status   — journal status of a working paper ("Conditionally accepted at
+ *              <em>Journal</em>.", "Revisions requested by ...", "Currently
+ *              revising."); shown in bold before the notes on the research
+ *              page and after the date on the home page; empty if none
  *   media    — free text listing media coverage (outlet names, no links),
  *              shown under the citation; empty string if none
  *
@@ -22,7 +26,7 @@
  *   ties broken by title A-Z.
  * - <date> accepts "YYYY", "YYYY-MM", "YYYY-MM-DD", "Month YYYY", or
  *   "D Month YYYY". Year-only and day-level dates display as written.
- * - Any HTML inside <notes> or <abstract> must be wrapped in CDATA.
+ * - Any HTML inside <status>, <notes> or <abstract> must be wrapped in CDATA.
  * - <doc> and <appendix> are file names in src/assets/papers/ (or absolute
  *   URLs); <replication> is a file name in src/assets/replication/ (or a URL);
  *   <doi> is a bare DOI (linked via doi.org) or a full URL.
@@ -152,11 +156,12 @@ function linePub(it) {
   return ensureFinalPeriod(s.trim());
 }
 
-// **Title** (with Coauthors). Month Year. Notes.
+// **Title** (with Coauthors). Month Year. **Status.** Notes.
 function lineWP(it) {
   let s = titleAndCoauthors(it);
   const date = monthYearFull(it.date);
   if (date) s += ". " + escapeHTML(date) + ".";
+  if (it.status) s += " <strong>" + ensureFinalPeriod(it.status) + "</strong>";
   if (it.notes) s += " " + it.notes;
   return ensureFinalPeriod(s.trim());
 }
@@ -182,11 +187,14 @@ function shortPub(it) {
   return s;
 }
 
-// Home page: **Title** (with Coauthors). Month Year.
+// Home page: **Title** (with Coauthors). Month Year. Status.
 function shortWP(it) {
   let s = titleAndCoauthors(it, true) + ".";
   const date = monthYearFull(it.date);
   if (date) s += " " + escapeHTML(date) + ".";
+  if (it.status) {
+    s += ' <span class="featured-status">' + ensureFinalPeriod(it.status) + "</span>";
+  }
   return s;
 }
 
@@ -206,6 +214,7 @@ function normalize(node, kind) {
     vol_issue: text(node.vol_issue),
     pages: text(node.pages),
     date: text(node.date),
+    status: text(node.status),
     notes: text(node.notes),
     abstract: text(node.abstract),
     media: text(node.media),
