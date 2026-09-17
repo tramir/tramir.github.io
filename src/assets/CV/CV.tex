@@ -43,7 +43,7 @@
 \definecolor{metacolor}{gray}{0.45}   % "Updated …", contact block
 
 % Year column in gray; text columns as before
-\newcolumntype{L}{@{\hspace{-1em}}>{\raggedleft\leavevmode\color{yearcolor}\bgroup}p{0.11\textwidth}<{\egroup}}
+\newcolumntype{L}{@{\hspace{-1em}}>{\raggedleft\leavevmode\color{yearcolor}\addfontfeatures{Numbers={Lining,Tabular}}\bgroup}p{0.11\textwidth}<{\egroup}}
 \newcolumntype{R}{>{\noindent\setlength{\parindent}{1em}}p{0.85\textwidth}}
 \newcolumntype{S}{>{\setlength{\parindent}{1em}}p{0.74\textwidth}}
 \newcolumntype{P}{>{\noindent\setlength{\parindent}{0.5em}\hangindent=2\parindent}p{0.85\textwidth}}
@@ -51,9 +51,9 @@
 \setlength{\LTpre}{0pt}
 
 % Section headings (Garamond): \large, regular weight
-\providecommand{\headingstyle}{\large}
+\providecommand{\headingstyle}{\large\scshape\addfontfeatures{LetterSpace=3}}
 \titleformat*{\section}{\headingstyle}
-\titlespacing*{\section}{0pt}{*3.5}{*0.8}
+\titlespacing*{\section}{0pt}{*3.5}{*1.2}
 
 % Never leave a section heading alone at the bottom of a page: require room
 % for the heading plus about two table rows, else break before the heading.
@@ -121,6 +121,28 @@
       end
     end
 
+    -- Link for an entry: the paper PDF on the website if present, else the DOI
+    function entry_link(node)
+      local doc = node:query_selector("doc")[1]
+      if doc ~= nil and doc:get_text() ~= "" then
+        local d = doc:get_text()
+        if d:match("^http") or d:match("^/") then return d end
+        return "https://www.mirceatrandafir.com/assets/papers/" .. d
+      end
+      local doi = node:query_selector("doi")[1]
+      if doi ~= nil and doi:get_text() ~= "" then
+        local d = doi:get_text():gsub("^doi:%s*", "")
+        if d:match("^http") then return d else return "https://doi.org/" .. d end
+      end
+      return nil
+    end
+
+    function linked_title(node, title)
+      local url = entry_link(node)
+      if url == nil then return title end
+      return "\\href{" .. url .. "}{" .. title .. "}"
+    end
+
     -- Function for printing publications (econ and other)
 
     function publications(pub_type)
@@ -176,13 +198,13 @@
               else 
                 wp_text = "&" .. wp_text
               end
-            elseif el_name == "title" then wp_text = wp_text .. "``" .. el_text
+            elseif el_name == "title" then wp_text = wp_text .. "``" .. linked_title(wp, el_text)
             elseif el_name == "coauthors" then
               if el_text ~= "" 
                 then wp_text = wp_text .. "'' (with " .. el_text .. "), " 
                 else wp_text = wp_text .. ",'' "
               end
-              elseif el_name == "journal" and el_text ~= "" then wp_text = wp_text .. "\\textbf{\\emph{" .. el_text .. "}}"
+              elseif el_name == "journal" and el_text ~= "" then wp_text = wp_text .. "\\emph{" .. el_text .. "}"
               elseif el_name == "vol_issue" and el_text ~= "" then wp_text = wp_text .. " " .. el_text .. ": "
               elseif el_name == "pages" and el_text ~= "" then wp_text = wp_text .. el_text:gsub("(%d+)-(%d+)", "%1--%2")
               elseif el_name == "notes" and el_text ~= "" then
@@ -253,16 +275,18 @@
                 else wp_text = year .. "/" .. month .. " & " .. wp_text 
                 end
               end
-            elseif el_name == "title" then wp_text = wp_text .. "``" .. el_text
+            elseif el_name == "title" then wp_text = wp_text .. "``" .. linked_title(wp, el_text)
             elseif el_name == "coauthors" then
               if el_text ~= "" 
                 then wp_text = wp_text .. "'' (with " .. el_text .. ")." 
                 else wp_text = wp_text .. ".''"
               end
-              elseif el_name == "status" and el_text ~= "" then
+              -- status: only journal statuses (those naming a journal in <em>);
+              -- "Currently revising" and the like stay on the website only
+              elseif el_name == "status" and el_text ~= "" and obj:serialize(el):match("<em>") then
                 el_text = obj:serialize(el)
                 el_text = parse_note(el_text)
-                wp_text = wp_text .. " \\textbf{" .. add_period(el_text) .. "}"
+                wp_text = wp_text .. " " .. add_period(el_text)
                 wp_text = wp_text:gsub("''%.", ".''")
               elseif el_name == "notes" and el_text ~= "" then 
                 el_text = obj:serialize(el)
@@ -458,7 +482,7 @@
 \section*{Invited Seminars and Conference Presentations}
 
 \begin{longtable}{L!{\VRule}P}
-  2026 & RFBerlin Health Conference, HEFUU Workshop (Uppsala), Workshop on the Economics of Health and Human Capital (Madrid), ERMAS \\
+  2026 & RFBerlin Health Conference, HEFUU Workshop (Uppsala), Workshop on the Economics of Health and Human Capital (Madrid), ERMAS, FINHESS Virtual Seminar \\
   2025 & Vive.                                                                                                                                                                                                              \\
   2024 & Center for Health and Wellbeing at Princeton University, NBER Summer Institute, RWI Essen.                                                                                                                         \\
   2022 & ROCKWOOL Foundation, Health and Inequality Workshop at Copenhagen Business School, WOLFE Workshop at University of York.                                                                                           \\
@@ -562,29 +586,29 @@
 % Department Service
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Department Service}
+% \section*{Department Service}
 
-\begin{longtable}{L!{\VRule}P}
-  \multicolumn{2}{l}{\hspace{-1em}\emph{University of Southern Denmark}}                                                                                            \\
-  2021--2022 & PhD Coordinator.                                                                                                                                     \\
-  2021       & Member of the assessment committee, Assistant professor position in economics and demography (Department of Business and Economics and CPop).        \\
-  2021       & Presentation of economics research to high school students at Kold College, Odense.                                                                  \\
-  2020--2022 & Member of the executive committee of the Business and Social Sciences unit of the Interdisciplinary Centre on Population Dynamics (\emph{CPop-SAM}). \\
-  2019--2022 & Department coordinator for the Scandinavian PhD Seminar Exchange program.                                                                            \\
-  2019--2022 & Co-organizer of the \emph{Applied Economics} seminar series.                                                                                         \\
-  2019--2022 & Member of the inter-departmental working group assessing the BA program in Law and Economics.                                                        \\
-  2017       & Presentation of economics research as part of the Academy of Talented Youth.                                                                         \\
-  2016--2022 & Member of the job placement committee.                                                                                                               \\
-  2016       & Presentation of economics research as part of the Tietgen Talent program.                                                                            \\
-  2014--2022 & Faculty-member data manager (University of Southern Denmark).                                                                                        \\
-  2015--2022 & Internal supervisor, Lecturer Training Programme.                                                                                                    \\
-  2014--2018 & Co-organizer of the \emph{Health and Applied Microeconomics (COHERE)} seminar series.                                                                \\
-  2014--2016 & Member of the recruiting committee.                                                                                                                  \\[0.5em]
-  \multicolumn{2}{l}{\hspace{-1em}\emph{Université de Sherbrooke}}                                                                                                  \\
-  2012--2013 & Organizer of the departmental seminar series.                                                                                                        \\
-  2010--2013 & Member of the admissions committee for the MSc program.                                                                                              \\
-  2009--2012 & Member of the recruiting committee.                                                                                                                  \\
-\end{longtable}
+% \begin{longtable}{L!{\VRule}P}
+%   \multicolumn{2}{l}{\hspace{-1em}\emph{University of Southern Denmark}}                                                                                            \\
+%   2021--2022 & PhD Coordinator.                                                                                                                                     \\
+%   2021       & Member of the assessment committee, Assistant professor position in economics and demography (Department of Business and Economics and CPop).        \\
+%   2021       & Presentation of economics research to high school students at Kold College, Odense.                                                                  \\
+%   2020--2022 & Member of the executive committee of the Business and Social Sciences unit of the Interdisciplinary Centre on Population Dynamics (\emph{CPop-SAM}). \\
+%   2019--2022 & Department coordinator for the Scandinavian PhD Seminar Exchange program.                                                                            \\
+%   2019--2022 & Co-organizer of the \emph{Applied Economics} seminar series.                                                                                         \\
+%   2019--2022 & Member of the inter-departmental working group assessing the BA program in Law and Economics.                                                        \\
+%   2017       & Presentation of economics research as part of the Academy of Talented Youth.                                                                         \\
+%   2016--2022 & Member of the job placement committee.                                                                                                               \\
+%   2016       & Presentation of economics research as part of the Tietgen Talent program.                                                                            \\
+%   2014--2022 & Faculty-member data manager (University of Southern Denmark).                                                                                        \\
+%   2015--2022 & Internal supervisor, Lecturer Training Programme.                                                                                                    \\
+%   2014--2018 & Co-organizer of the \emph{Health and Applied Microeconomics (COHERE)} seminar series.                                                                \\
+%   2014--2016 & Member of the recruiting committee.                                                                                                                  \\[0.5em]
+%   \multicolumn{2}{l}{\hspace{-1em}\emph{Université de Sherbrooke}}                                                                                                  \\
+%   2012--2013 & Organizer of the departmental seminar series.                                                                                                        \\
+%   2010--2013 & Member of the admissions committee for the MSc program.                                                                                              \\
+%   2009--2012 & Member of the recruiting committee.                                                                                                                  \\
+% \end{longtable}
 
 
 \end{document}
