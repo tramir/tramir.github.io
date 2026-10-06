@@ -121,6 +121,27 @@
       end
     end
 
+    -- Working-paper statuses that are printed (case-insensitive prefixes of the
+    -- status text with tags removed). Keep in sync with STATUS_PREFIXES in
+    -- src/_data/research.js.
+    STATUS_PREFIXES = {
+      "submitted",
+      "revisions requested by",
+      "reject and resubmit at",
+      "revised and resubmitted at",
+      "conditionally accepted at",
+      "accepted at"
+    }
+
+    function shown_status(raw)
+      local plain = raw:gsub("<!%[CDATA%[", ""):gsub("%]%]>", ""):gsub("<[^>]*>", "")
+      plain = plain:gsub("^%s+", ""):lower()
+      for _, p in ipairs(STATUS_PREFIXES) do
+        if plain:sub(1, #p) == p then return true end
+      end
+      return false
+    end
+
     -- Link for an entry: the paper PDF on the website if present, else the DOI
     function entry_link(node)
       local doc = node:query_selector("doc")[1]
@@ -281,9 +302,8 @@
                 then wp_text = wp_text .. "'' (with " .. el_text .. ")." 
                 else wp_text = wp_text .. ".''"
               end
-              -- status: only journal statuses (those naming a journal in <em>);
-              -- "Currently revising" and the like stay on the website only
-              elseif el_name == "status" and el_text ~= "" and obj:serialize(el):match("<em>") then
+              -- status: only the statuses listed in STATUS_PREFIXES
+              elseif el_name == "status" and el_text ~= "" and shown_status(obj:serialize(el)) then
                 el_text = obj:serialize(el)
                 el_text = parse_note(el_text)
                 wp_text = wp_text .. " " .. add_period(el_text)

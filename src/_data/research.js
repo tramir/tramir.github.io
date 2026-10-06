@@ -14,10 +14,11 @@
  *              bold-italic, "vol(issue), pages, Month Year", notes)
  *   short    — compact HTML line for the home page (year only, title linked)
  *   abstract — HTML (from CDATA); empty string if none
- *   status   — journal status of a working paper ("Conditionally accepted at
- *              <em>Journal</em>.", "Revisions requested by ...", "Currently
- *              revising."); shown in bold before the notes on the research
- *              page and after the date on the home page; empty if none
+ *   status   — journal status of a working paper; shown in bold before the
+ *              notes on the research page and after the date on the home
+ *              page. Only statuses starting with one of STATUS_PREFIXES are
+ *              shown (e.g. "Submitted.", "Accepted at <em>Journal</em>.");
+ *              anything else, such as "Currently revising.", is dropped
  *   media    — free text listing media coverage (outlet names, no links),
  *              shown under the citation; empty string if none
  *
@@ -40,6 +41,23 @@ const { XMLParser } = require("fast-xml-parser");
 
 const XML_PATH = path.join(__dirname, "..", "assets", "xml", "research.xml");
 const MAX_FEATURED_WP = 3;
+
+// Working-paper statuses that are displayed (case-insensitive prefixes of the
+// status text with HTML tags removed). Keep in sync with STATUS_PREFIXES in
+// src/assets/CV/CV.tex.
+const STATUS_PREFIXES = [
+  "submitted",
+  "revisions requested by",
+  "reject and resubmit at",
+  "revised and resubmitted at",
+  "conditionally accepted at",
+  "accepted at"
+];
+
+function shownStatus(s) {
+  const plain = s.replace(/<[^>]*>/g, "").trim().toLowerCase();
+  return STATUS_PREFIXES.some((p) => plain.startsWith(p)) ? s : "";
+}
 
 // ---------- Helpers ----------
 function text(v) {
@@ -214,7 +232,7 @@ function normalize(node, kind) {
     vol_issue: text(node.vol_issue),
     pages: text(node.pages),
     date: text(node.date),
-    status: text(node.status),
+    status: shownStatus(text(node.status)),
     notes: text(node.notes),
     abstract: text(node.abstract),
     media: text(node.media),
