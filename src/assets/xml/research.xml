@@ -317,6 +317,7 @@
     <featured>true</featured>
   </wp>
 
+  <!-- Hidden for now
   <wp>
     <id>rwanda_educ</id>
     <title>Language of instruction and educational outcomes: Evidence from an education policy in Rwanda</title>
@@ -338,7 +339,9 @@
     <media></media>
     <url></url>
   </wp>
+  -->
 
+  <!-- Hidden for now
   <wp>
     <id>rwanda_fertility</id>
     <title>The effects of education policy on teen pregnancy</title>
@@ -359,7 +362,9 @@
     <media></media>
     <url></url>
   </wp>
+  -->
 
+  <!-- Hidden for now
   <wp>
     <id>rwanda_health</id>
     <title>Education policies and the intergenerational transmission of health: Evidence from Rwanda</title>
@@ -380,6 +385,7 @@
     <media></media>
     <url></url>
   </wp>
+  -->
 
   <!-- Work in progress -->
 
